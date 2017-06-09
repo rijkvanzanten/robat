@@ -1,0 +1,33 @@
+{
+  "name": "robat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint:js -s",
+    "lint:js": "eslint . --ext .js --cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rijkvanzanten/robat.git"
+  },
+  "author": "Rijk van Zanten <rijkvanzanten@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rijkvanzanten/robat/issues"
+  },
+  "homepage": "https://github.com/rijkvanzanten/robat#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "node-wit": "^4.2.0",
+    "oba-api": "github:rijkvanzanten/node-oba-api",
+    "socket.io": "^2.0.2",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "debug": "^2.6.8",
+    "eslint": "^3.19.0"
+  }
+}
