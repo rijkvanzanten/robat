@@ -30,7 +30,7 @@ const obaClient = new OBA({
 
 const app = express()
   .set('view engine', 'ejs')
-  .use(express.static('public'))
+  .use(express.static('static'))
   .get('/', (req, res) => res.render('index'));
 
 // Start server on provided port or other 3000
