@@ -9,8 +9,9 @@ $ git clone https://github.com/rijkvanzanten/robat.git
 ```
 
 ## Usage
-To start the server, run `./index.js` with Node.js
+To start the application, run `npm start`
 
-To build the static assets, run `npm run build`
+To test the code (only lint for now), run `npm test`
 
 To start the application in development mode (auto-restart of server and auto-rebuild), run `npm run dev`
+
