@@ -12,7 +12,9 @@
     "build:css": "postcss src/style.css --use cssnano > build/style.css",
     "watch:css": "chokidar 'src/style.css' -c 'npm run build:css -s'",
     "watch": "concurrently --prefix '[{name}]' --prefix-colors 'yellow,cyan' --names 'JS,CSS' 'npm run watch:js -s' 'npm run watch:css -s'",
-    "dev": "concurrently --prefix '[{name}]' --prefix-colors 'green,white' --names 'SERVER,BUILD' 'DEBUG=robat nodemon index.js' 'npm run watch -s'"
+    "build": "npm run build:js -s && npm run build:css",
+    "dev": "concurrently --prefix '[{name}]' --prefix-colors 'green,white' --names 'SERVER,BUILD' 'DEBUG=robat nodemon index.js' 'npm run watch -s'",
+    "postinstall": "npm run build -s"
   },
   "repository": {
     "type": "git",
