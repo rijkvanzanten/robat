@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint:js -s",
+    "test": "npm run lint:js -s & npm run lint:css -s",
     "lint:js": "eslint . --ext .js --cache",
     "lint:css": "stylelint src/style.css",
     "build:js": "browserify src/index.js -t [ babelify --presets [ es2015 ] ] -p bundle-collapser/plugin | esmangle > build/index.js && echo 'JS Built'",
