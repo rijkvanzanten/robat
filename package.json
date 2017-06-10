@@ -14,7 +14,8 @@
     "watch": "concurrently --prefix '[{name}]' --prefix-colors 'yellow,cyan' --names 'JS,CSS' 'npm run watch:js -s' 'npm run watch:css -s'",
     "build": "npm run build:js -s && npm run build:css",
     "dev": "concurrently --prefix '[{name}]' --prefix-colors 'green,white' --names 'SERVER,BUILD' 'DEBUG=robat nodemon --watch server server/index.js' 'npm run watch -s'",
-    "postinstall": "npm run build -s"
+    "postinstall": "npm run build -s",
+    "start": "npm run build -s && node server/index.js"
   },
   "repository": {
     "type": "git",
