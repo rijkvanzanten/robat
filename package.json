@@ -8,7 +8,11 @@
     "lint:js": "eslint . --ext .js --cache",
     "lint:css": "stylelint src/style.css",
     "build:js": "browserify src/index.js -t [ babelify --presets [ es2015 ] ] -p bundle-collapser/plugin | esmangle > build/index.js && echo 'JS Built'",
-    "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json src/index.js > build/index.js -v'"
+    "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json src/index.js > build/index.js -v'",
+    "build:css": "postcss src/style.css --use cssnano > build/style.css",
+    "watch:css": "chokidar 'src/style.css' -c 'npm run build:css -s'",
+    "watch": "concurrently --prefix '[{name}]' --prefix-colors 'yellow,cyan' --names 'JS,CSS' 'npm run watch:js -s' 'npm run watch:css -s'",
+    "dev": "concurrently --prefix '[{name}]' --prefix-colors 'green,white' --names 'SERVER,BUILD' 'DEBUG=robat nodemon index.js' 'npm run watch -s'"
   },
   "repository": {
     "type": "git",
@@ -37,9 +41,12 @@
     "bundle-collapser": "^1.2.1",
     "chokidar-cli": "^1.2.0",
     "concurrently": "^3.4.0",
+    "cssnano": "^3.10.0",
     "debug": "^2.6.8",
     "eslint": "^3.19.0",
     "esmangle": "^1.0.1",
+    "nodemon": "^1.11.0",
+    "postcss-cli": "^4.0.0",
     "stylelint": "^7.11.0"
   }
 }
