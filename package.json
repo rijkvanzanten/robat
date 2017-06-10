@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npm run lint:js -s",
     "lint:js": "eslint . --ext .js --cache",
+    "lint:css": "stylelint src/style.css",
     "build:js": "browserify src/index.js -t [ babelify --presets [ es2015 ] ] -p bundle-collapser/plugin | esmangle > build/index.js && echo 'JS Built'",
     "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json src/index.js > build/index.js -v'"
   },
@@ -38,6 +39,7 @@
     "concurrently": "^3.4.0",
     "debug": "^2.6.8",
     "eslint": "^3.19.0",
-    "esmangle": "^1.0.1"
+    "esmangle": "^1.0.1",
+    "stylelint": "^7.11.0"
   }
 }
