@@ -1,5 +1,6 @@
 // Require all the packages
 const http = require('http');
+const path = require('path');
 const express = require('express');
 const OBA = require('oba-api');
 const debug = require('debug')('robat');
@@ -30,7 +31,8 @@ const obaClient = new OBA({
 
 const app = express()
   .set('view engine', 'ejs')
-  .use(express.static('static'))
+  .use(express.static(path.join(__dirname, '..', 'static'), {maxAge: '31d'}))
+  .use(express.static(path.join(__dirname, '..', 'build'), {maxAge: '31d'}))
   .get('/', (req, res) => res.render('index'));
 
 // Start server on provided port or other 3000
