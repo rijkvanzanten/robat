@@ -25,8 +25,9 @@ const app = express()
 
 // Start server on provided port or other 3000
 const server = http.createServer(app);
-server.listen(process.env.PORT || 3000, () => {
-  console.log('🤖  Robat is listening at port ' + process.env.PORT || 3000); // eslint-disable-line no-console
+const port = process.env.PORT || 3000;
+server.listen(port, () => {
+  console.log('🤖  Robat is listening at port '+ port); // eslint-disable-line no-console
 });
 
 function renderEmptyIndex(req, res) {
