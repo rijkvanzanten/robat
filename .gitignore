@@ -58,3 +58,6 @@ typings/
 .env
 
 .DS_Store
+build
+
+browserify-cache.json
