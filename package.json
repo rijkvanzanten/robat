@@ -4,8 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint:js -s",
-    "lint:js": "eslint . --ext .js --cache"
+    "test": "npm run lint:js -s & npm run lint:css -s",
+    "lint:js": "eslint . --ext .js --ignore-pattern '/build/*'  --cache",
+    "lint:css": "stylelint src/style.css",
+    "build:js": "browserify src/index.js -t [ babelify --presets [ es2015 ] ] -p bundle-collapser/plugin | esmangle > build/index.js && echo 'JS Built'",
+    "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json src/index.js > build/index.js -v'",
+    "build:css": "postcss src/style.css --use cssnano > build/style.css",
+    "watch:css": "chokidar 'src/style.css' -c 'npm run build:css -s'",
+    "watch": "concurrently --prefix '[{name}]' --prefix-colors 'yellow,cyan' --names 'JS,CSS' 'npm run watch:js -s' 'npm run watch:css -s'",
+    "build": "npm run build:js -s && npm run build:css",
+    "dev": "concurrently --prefix '[{name}]' --prefix-colors 'green,white' --names 'SERVER,BUILD' 'DEBUG=robat nodemon --watch server server/index.js' 'npm run watch -s'",
+    "postinstall": "npm run build -s",
+    "start": "npm run build -s && node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +37,19 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "browserify-incremental": "^3.1.1",
+    "bundle-collapser": "^1.2.1",
+    "chokidar-cli": "^1.2.0",
+    "concurrently": "^3.4.0",
+    "cssnano": "^3.10.0",
     "debug": "^2.6.8",
-    "eslint": "^3.19.0"
+    "eslint": "^3.19.0",
+    "esmangle": "^1.0.1",
+    "nodemon": "^1.11.0",
+    "postcss-cli": "^4.0.0",
+    "stylelint": "^7.11.0"
   }
 }

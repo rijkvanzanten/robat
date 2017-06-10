@@ -15,8 +15,8 @@ h1 {
 }
 
 ul#chatwindow {
-    background: bisque;
-    margin: 0;
+  background: bisque;
+  margin: 0;
 }
 
 li {
@@ -29,7 +29,7 @@ li {
 }
 
 .bot {
-    display: flex;
-    align-items: flex-end;
-    align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  align-self: flex-end;
 }
