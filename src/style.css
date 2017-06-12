@@ -29,10 +29,7 @@ body {
 body > div {
   height: 100%;
   max-width: 790px;
-  margin: 0 auto;
   position: relative;
-  border-radius: 4px;
-  overflow: hidden;
 }
 
 @media screen and (min-width: 790px) {
@@ -41,6 +38,9 @@ body > div {
     position: relative;
     top: 10vh;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin: 0 auto;
+    overflow: hidden;
   }
 }
 
