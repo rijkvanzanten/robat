@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html lang=nl>
+<html lang="nl">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
     <title>Robat chat</title>
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <main>
-      <img id="logo" src="./img/robat-logo.svg" alt="Robat">
-      <ul id="chatwindow">
-        <li class="bot"> chat voorbeeld</li>
-        <li class="user"> gevuld met berichtjes</li>
+    <div>
+      <header>
+        <img src="./img/robat-logo.svg" alt="Robat">
+      </header>
+
+      <ul>
+        <!-- dit wordt een dingetje -->
       </ul>
 
-      <form action="/post" method="post" id="messageForm">
+      <form action="/" method="post">
         <input type="text" name="message" placeholder="Type een bericht..">
         <button type="submit">verstuur</button>
       </form>
-    </main>
+    </div>
   </body>
 </html>
