@@ -41,4 +41,3 @@ function renderEmptyIndex(req, res) {
     messages: [],
   });
 }
-
