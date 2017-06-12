@@ -1,3 +1,4 @@
+/* global io */
 (function () {
   const socket = io.connect();
 
@@ -7,7 +8,6 @@
    * Reads the value of the input and sends it to renderMessageToDom
    */
   function submitMessage(event) {
-    const chatwindow = document.querySelector('ul');
     const messageForm = document.querySelector('form');
     const message = messageForm.querySelector('input[name="message"]').value;
 
