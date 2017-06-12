@@ -18,22 +18,60 @@ html {
 }
 
 body {
-  height: 100%;
   padding: 0;
+  height: 100%;
 }
 
-main {
-  width: 100%;
-  max-width: 440px;
+/* wrapper */
+body > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   overflow: auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  position: fixed;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  z-index: 5;
 }
 
 header img {
-  height: 1.5em;
-  margin: 1em auto;
+  height: 1.5rem;
+  margin: 1rem auto;
   display: block;
 }
+
+ul {
+  list-style: none;
+  padding: 0.5em;
+  padding-top: 4rem;
+  background-image: url('/img/bg.png');
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+form input {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0.5rem;
+  flex-grow: 1;
+}
+
