@@ -28,11 +28,11 @@ body {
 /* wrapper */
 body > div {
   height: 100%;
-  max-width: 790px;
+  max-width: 796px;
   position: relative;
 }
 
-@media screen and (min-width: 790px) {
+@media screen and (min-width: 796px) {
   body > div {
     height: 80vh;
     position: relative;
