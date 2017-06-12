@@ -21,28 +21,32 @@ html {
 body {
   padding: 0;
   height: 100%;
+  background-color: #fc5a11;
+  background-image: linear-gradient(-90deg, #992459, #FF5B0F);
 }
 
 /* wrapper */
 body > div {
   height: 100%;
-  max-width: 768px;
+  max-width: 790px;
   margin: 0 auto;
   position: relative;
   border-radius: 4px;
   overflow: hidden;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 790px) {
   body > div {
-    height: 80%;
-    margin: 10% auto;
+    height: 80vh;
+    position: relative;
+    top: 10vh;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   }
 }
 
 header {
   overflow: auto;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   top: 0;
   width: 100%;
   background-color: white;
@@ -76,7 +80,7 @@ li {
   padding: 1em;
   background-color: white;
   margin: 1em 0;
-  max-width: 60vw;
+  max-width: 67%;
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   border-radius: 6px;
 }
@@ -125,4 +129,5 @@ form button {
   font-weight: 500;
   font-size: inherit;
   margin-right: 0.5em;
+  cursor: pointer;
 }
