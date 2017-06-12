@@ -1,28 +1,34 @@
 <!DOCTYPE html>
-<html lang=nl>
+<html lang="nl">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="utf-8">
     <title>Robat chat</title>
     <link rel="stylesheet" href="/style.css">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="/index.js" defer></script>
+    <script src="/index.js" defer></script>
   </head>
   <body>
-    <main>
-      <article>
-        <header>
-          <img id="logo" src="./img/robat-logo.svg" alt="Robat">
-        </header>
-        <ul id="chatwindow">
-          <li class="bot"> chat voorbeeld</li>
-          <li class="user"> gevuld met berichtjes</li>
-        </ul>
+    <div>
+      <header>
+        <img src="./img/robat-logo.svg" alt="Robat">
+      </header>
 
-        <form action="/post" method="post" id="messageForm">
-          <input type="text" name="message" placeholder="Type een bericht..">
-          <button type="submit">verstuur</button>
-        </form>
-      </article>
-    </main>
+      <ul>
+        <li data-user="user">Hallo!</li>
+        <li data-user="robat">Hey!</li>
+        <li data-user="user">Ik ben op zoek naar een Nederlands boek over de Tweede Wereldoorlog</li>
+        <li data-user="robat">Ik ga even voor je kijken, momentje</li>
+        <li data-user="robat">Dit is wat ik heb gevonden in boeken over de Tweede Wereldoorlog</li>
+        <li data-user="robat">Hey!</li>
+        <li data-user="user">Ik ben op zoek naar een Nederlands boek over de Tweede Wereldoorlog</li>
+        <li data-user="robat">Ik ga even voor je kijken, momentje</li>
+        <li data-user="robat">Dit is wat ik heb gevonden in boeken over de Tweede Wereldoorlog</li>
+      </ul>
+
+      <form action="/" method="post">
+        <input type="text" name="message" placeholder="Type een bericht..">
+        <button type="submit">Stuur</button>
+      </form>
+    </div>
   </body>
 </html>

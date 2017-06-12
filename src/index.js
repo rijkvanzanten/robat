@@ -11,8 +11,6 @@
     const messageForm = document.querySelector('form');
     const message = messageForm.querySelector('input[name="message"]').value;
 
-    renderMessageToDom(message);
-
     // sockets
     socket.emit('message', message);
 
@@ -20,15 +18,17 @@
     event.preventDefault();
   }
 
-  /**
-   * Renders a single message into the #chatwindow
-   * @param  {String} message the message to render
-   */
-  function renderMessageToDom(message) {
-    const chatwindow = document.querySelector('ul');
-
-    chatwindow.innerHTML +=
-      `<li> ${message} </li>`;
+  function scrollMessages() {
+    const messagesElement = document.querySelector('ul');
+    messagesElement.scrollTop = messagesElement.scrollHeight;
   }
+
+  // Scroll to most bottom message on load
+  scrollMessages();
+
+  setTimeout(function() {
+    document.querySelector('ul').innerHTML += '<li>je moeder </li>';
+    scrollMessages();
+  }, 2000);
 
 }());
