@@ -26,7 +26,7 @@
 
   function scrollMessages() {
     const messagesElement = document.querySelector('ul');
-    document.body.scrollTop = document.body.scrollHeight;
+    messagesElement.scrollTop = messagesElement.scrollHeight;
   }
 
   // Scroll to most bottom message on load
