@@ -1,5 +1,5 @@
 (function () {
-  document.querySelector('#messageForm').addEventListener('submit', submitMessage);
+  //document.querySelector('#messageForm').addEventListener('submit', submitMessage);
 
   /**
    * Reads the value of the input and sends it to renderMessageToDom
@@ -23,4 +23,17 @@
     chatwindow.innerHTML +=
       `<li> ${message} </li>`;
   }
+
+  function scrollMessages() {
+    const messagesElement = document.querySelector('ul');
+    document.body.scrollTop = document.body.scrollHeight;
+  }
+
+  // Scroll to most bottom message on load
+  scrollMessages();
+
+  setTimeout(function() {
+    document.querySelector('ul').innerHTML += '<li>je moeder </li>';
+    scrollMessages();
+  }, 2000);
 }());
