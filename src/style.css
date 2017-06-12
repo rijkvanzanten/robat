@@ -9,13 +9,15 @@ main {
   width: 100%;
 }
 
-h1 {
-  font-size: 1.5em;
-  text-align: center;
+#logo {
+  align-content: center;
+  height: 2em;
+  padding: 1em;
+  width: 100vw;
 }
 
 ul#chatwindow {
-  background: bisque;
+  background-image: url(./img/bg.png);
   margin: 0;
 }
 
@@ -29,7 +31,7 @@ li {
 }
 
 .bot {
-  display: flex;
   align-items: flex-end;
   align-self: flex-end;
+  display: flex;
 }
