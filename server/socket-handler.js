@@ -1,5 +1,5 @@
 module.exports = function(socket) {
-  socket.on('message', function() {
-    socket.emit('Hi there!');
+  socket.on('message', function(message) {
+    socket.emit('message', 'Halloooooo');
   });
 };

@@ -1,28 +1,22 @@
+/* global io */
 (function () {
-  //document.querySelector('#messageForm').addEventListener('submit', submitMessage);
+  const socket = io.connect();
+
+  document.querySelector('form').addEventListener('submit', submitMessage);
 
   /**
    * Reads the value of the input and sends it to renderMessageToDom
    */
-  //function submitMessage() {
-    //const messageForm = document.querySelector('#messageForm');
-    //const message = messageForm.querySelector('input[name="message"]').value;
+  function submitMessage(event) {
+    const messageForm = document.querySelector('form');
+    const message = messageForm.querySelector('input[name="message"]').value;
 
-    //renderMessageToDom(message);
+    // sockets
+    socket.emit('message', message);
 
-    //messageForm.querySelector('input[name="message"]').value = '';
-  //}
-
-  /**
-   * Renders a single message into the #chatwindow
-   * @param  {String} message the message to render
-   */
-  //function renderMessageToDom(message) {
-    //const chatwindow = document.querySelector('#chatwindow');
-
-    //chatwindow.innerHTML +=
-      //`<li> ${message} </li>`;
-  //}
+    messageForm.querySelector('input[name="message"]').value = '';
+    event.preventDefault();
+  }
 
   function scrollMessages() {
     const messagesElement = document.querySelector('ul');
@@ -36,4 +30,5 @@
     document.querySelector('ul').innerHTML += '<li>je moeder </li>';
     scrollMessages();
   }, 2000);
+
 }());
