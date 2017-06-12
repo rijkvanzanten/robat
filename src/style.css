@@ -19,35 +19,21 @@ html {
 
 body {
   height: 100%;
+  padding: 0;
 }
 
 main {
   width: 100%;
+  max-width: 440px;
 }
 
-#logo {
-  align-content: center;
-  height: 2em;
-  padding: 1em;
-  width: 100vw;
+header {
+  overflow: auto;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-ul#chatwindow {
-  background-image: url(./img/bg.png);
-  margin: 0;
-}
-
-li {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding-bottom: 0.5em;
-  padding-left: 1em;
-  padding-top: 0.5em;
-}
-
-.bot {
-  align-items: flex-end;
-  align-self: flex-end;
-  display: flex;
+header img {
+  height: 1.5em;
+  margin: 1em auto;
+  display: block;
 }
