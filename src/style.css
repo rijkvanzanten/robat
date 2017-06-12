@@ -21,8 +21,6 @@ html {
 body {
   padding: 0;
   height: 100%;
-  background-color: #fc5a11;
-  background-image: linear-gradient(-90deg, #992459, #ff5b0f);
 }
 
 /* wrapper */
@@ -33,6 +31,10 @@ body > div {
 }
 
 @media screen and (min-width: 796px) {
+  body {
+    background-image: linear-gradient(-90deg, #992459, #ff5b0f);
+  }
+
   body > div {
     height: 80vh;
     position: relative;
