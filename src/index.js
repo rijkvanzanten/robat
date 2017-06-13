@@ -22,16 +22,23 @@
     event.preventDefault();
   }
 
-  function scrollMessages() {
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }
-
+  /**
+   * Renders a new message to the chatwindow
+   * @param  {String} message The message to render
+   * @param  {Boolean} robat Is this a message of robat
+   */
   function renderMessage(message, robat = false) {
     chatWindow.innerHTML += `<li data-user="${robat ? 'robat' : 'user'}">${message}</li>`;
     scrollMessages();
   }
 
+  /**
+   * Scrolls the message window to the last item
+   */
+  function scrollMessages() {
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
   // Scroll to most bottom message on load
   scrollMessages();
-
 }());
