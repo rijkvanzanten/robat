@@ -6,6 +6,13 @@
 
   document.querySelector('form').addEventListener('submit', submitMessage);
 
+  socket.on('message', serverMessage);
+
+  function serverMessage(message) {
+    renderMessage(message, true);
+    scrollMessages();
+  }
+
   /**
    * Reads the value of the input and sends it to renderMessageToDom
    */
