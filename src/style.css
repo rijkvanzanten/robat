@@ -105,7 +105,7 @@ li button {
   flex-grow: 1;
   border: 1px solid #efefef;
   border-radius: 4px;
-  padding: .5em;
+  padding: 0.5em;
   background-color: white;
   font-size: inherit;
   color: #60b0e8;
@@ -135,8 +135,8 @@ li div h2 {
 }
 
 li img {
-    width: 30%;
-    height: 100%;
+  width: 30%;
+  height: 100%;
 }
 
 form {
