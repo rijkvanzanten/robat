@@ -1,4 +1,5 @@
 const socketIO = require('socket.io');
+const debug = require('debug')('robat');
 const getWitClient = require('./wit');
 
 module.exports = function(server) {
@@ -10,6 +11,7 @@ module.exports = function(server) {
   function socketHandler(socket) {
     let context = {};
     socket.on('message', function(message) {
+      debug(`[IO] Message: ${message}`);
       client.runActions(socket.id, message, context)
         .then((newContext, entities) => {
           context = newContext;
