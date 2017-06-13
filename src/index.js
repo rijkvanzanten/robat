@@ -34,9 +34,4 @@
   // Scroll to most bottom message on load
   scrollMessages();
 
-  setTimeout(function() {
-    document.querySelector('ul').innerHTML += '<li>je moeder </li>';
-    scrollMessages();
-  }, 2000);
-
 }());
