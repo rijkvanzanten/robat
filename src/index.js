@@ -73,4 +73,10 @@
 
   // Scroll to most bottom message on load
   scrollMessages();
+
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    // Where to find the service worker
+    navigator.serviceWorker.register('/sw.js');
+  }
 }());
