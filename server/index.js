@@ -3,10 +3,20 @@ require('dotenv').config();
 // Require all the packages
 const http = require('http');
 const path = require('path');
+const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
 
 const socketHandler = require('./socket-handler');
+
+/**
+ * Require all JS files in de ./actions folder to let them
+ *   register in the actions object with the register function
+ */
+const actions = path.join(__dirname, '/actions');
+fs.readdirSync(actions)
+  .filter(file => ~file.search(/^[^\.].*\.js$/))
+  .forEach(file => require(path.join(actions, file)));
 
 // Check for environment variables
 if (
