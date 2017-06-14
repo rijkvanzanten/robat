@@ -1,25 +1,9 @@
 const debug = require('debug')('robat');
+const {actions} = require('./actions');
+const state = require('./state');
+
 const url = (id, q) => `https://api.wit.ai/converse?v=20170307&session_id=${id}&q=${q}`;
 
-const state = {
-  store: {},
-  get(key) {
-    const data = this.store[key];
-    if (data) {
-      return data;
-    }
-
-    this.store[key] = {};
-    return this.store[key];
-  },
-  set(key, data) {
-    if (this.store[key]) {
-      this.store[key] = Object.assign({}, this.store[key], data);
-    } else {
-      this.store[key] = data;
-    }
-  }
-};
 
 module.exports = function(socket) {
   socket.on('message', msg => handleMessage(msg, socket));
