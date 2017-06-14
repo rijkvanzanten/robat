@@ -7,6 +7,6 @@
 
 module.exports = io => ({context, sessionId}) =>
   new Promise(resolve => {
-    io.to(sessionId).emit('message', JSON.stringify(context.results));
+    io.to(sessionId).emit('displayResults', context.results);
     return resolve(context);
   });
