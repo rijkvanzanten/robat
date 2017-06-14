@@ -7,7 +7,7 @@ const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
 
-const socketHandler = require('./socket-handler');
+const messageHandler = require('./message-handler');
 
 /**
  * Require all JS files in de ./actions folder to let them
@@ -39,7 +39,7 @@ const server = http.createServer(app);
 
 const io = socketIO(server);
 
-io.on('connection', socketHandler);
+io.on('connection', messageHandler);
 
 const port = process.env.PORT || 3000;
 
