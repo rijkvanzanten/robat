@@ -3,8 +3,10 @@ require('dotenv').config();
 // Require all the packages
 const http = require('http');
 const path = require('path');
+const socketIO = require('socket.io');
 const express = require('express');
-const setupSocketIO = require('./socket');
+
+const socketHandler = require('./socket');
 
 // Check for environment variables
 if (
@@ -25,7 +27,9 @@ const app = express()
 // Start server on provided port or other 3000
 const server = http.createServer(app);
 
-setupSocketIO(server);
+const io = socketIO(server);
+
+io.on('connection', socketHandler);
 
 const port = process.env.PORT || 3000;
 
