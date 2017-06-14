@@ -6,7 +6,7 @@ const path = require('path');
 const socketIO = require('socket.io');
 const express = require('express');
 
-const socketHandler = require('./socket');
+const socketHandler = require('./socket-handler');
 
 // Check for environment variables
 if (
