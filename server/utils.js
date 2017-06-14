@@ -10,5 +10,16 @@ module.exports = {
     }
 
     return typeof val === 'object' ? val.value : val;
-  }
-}
+  },
+  translateType(val) {
+    val = val.toLowerCase();
+    // TODO: complete list
+    const types = {
+      boek: 'book',
+      film: 'movie',
+    };
+
+    return types[val] || val;
+  },
+};
+

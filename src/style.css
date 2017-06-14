@@ -125,11 +125,11 @@ li div {
   padding: 0.5em;
 }
 
-li div h1 {
+li div h2 {
   font-size: inherit;
 }
 
-li div h2 {
+li div h3 {
   font-size: inherit;
   font-weight: 100;
 }

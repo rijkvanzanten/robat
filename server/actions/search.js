@@ -1,5 +1,6 @@
 const debug = require('debug')('robat');
-const {firstEntityValue} = require('../utils');
+const {firstEntityValue, translateType} = require('../utils');
+const oba = require('../oba');
 
 module.exports = ({context, entities}) =>
   new Promise(resolve => {
@@ -21,11 +22,32 @@ module.exports = ({context, entities}) =>
     }
 
     if (language && type && contact) {
-      // doe api
-      context.results = [{name: 'rijk'}];
+      oba.get('search', {
+        q: 'id:*',
+        facet: [`Type(${translateType(type)})`, `Auteur(${contact})`],
+        ps: 3,
+      })
+        .then(results => JSON.parse(results))
+        .then(json => {
+          const results = json.aquabrowser.results;
+          if (results && results.result) {
+            return results.result.map(item => ({
+              title: item.titles['short-title'],
+              author: item.authors['main-author']['search-term'],
+              image: item.coverimages.coverimage[0],
+            }));
+          }
+
+          return [];
+        })
+        .then(results => {
+          context.results = results;
+          return resolve(context);
+        })
+        .catch(err => console.log(err));
+    } else {
+      return resolve(context);
     }
 
     debug('[WIT] Send context \n\n' + JSON.stringify(context));
-
-    return resolve(context);
   });

@@ -7,6 +7,7 @@
   document.querySelector('form').addEventListener('submit', submitMessage);
 
   socket.on('message', serverMessage);
+  socket.on('displayResults', renderResults);
 
   function serverMessage(message) {
     renderMessage(message, true);
@@ -37,6 +38,30 @@
   function renderMessage(message, robat = false) {
     chatWindow.innerHTML += `<li data-user="${robat ? 'robat' : 'user'}">${message}</li>`;
     scrollMessages();
+  }
+
+  function renderResults(results) {
+    if (results && results.length > 0) {
+      return renderMessage(`
+        <ul>
+          ${results.map(renderLI).reduce((str, item) => str += item)}
+          <button>Toon meer</button>
+        </ul>
+      `, true);
+    }
+
+    function renderLI(item) {
+      const {title, author, image} = item;
+      return `
+        <li>
+          <div>
+            <h2>${title}</h2>
+            <h3>${author}</h3>
+          </div>
+          <img src="${image}" alt="${title}" />
+        </li>
+      `;
+    }
   }
 
   /**
