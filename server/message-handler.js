@@ -4,11 +4,11 @@ const shortid = require('shortid');
 const {actions} = require('./actions');
 const state = require('./state');
 
-const url = (id, q) => `https://api.wit.ai/converse?v=20170307&session_id=${id}&q=${q}`;
+const getUrl = (id, q) => `https://api.wit.ai/converse?v=20170307&session_id=${id}` + (q ? '&q=' + q : '');
 
 module.exports = function(socket) {
   socket.on('message', msg => handleMessage(msg, socket));
-}
+};
 
 /**
  * Handle an incoming message
@@ -19,7 +19,8 @@ function handleMessage(message, socket) {
   const session = retrieveSession(socket.id);
 
   fetchWit(session.id, message)
-    .then(res => handleSuccess(res, socket))
+    .then(res => res.data)
+    .then(res => handleSuccess(session.id, res, socket))
     .catch(err => handleError(err, socket));
 }
 
@@ -29,13 +30,15 @@ function handleMessage(message, socket) {
  * @param  {String} q The message to parse
  */
 function fetchWit(id, q) {
+  const url = getUrl(id, q);
+  debug(url)
   return axios({
     method: 'post',
-    url: url(id, q),
+    url,
     data: {}, // context
     headers: {
-      Authorization: `Bearer ${process.env.WIT_KEY}`
-    }
+      Authorization: `Bearer ${process.env.WIT_KEY}`,
+    },
   });
 }
 
@@ -52,7 +55,7 @@ function retrieveSession(id) {
     const defaultState = {
       id: shortid.generate(),
       data: {},
-      inProgress: true
+      inProgress: true,
     };
 
     state.set(id, defaultState);
@@ -63,11 +66,58 @@ function retrieveSession(id) {
 
 /**
  * Incoming parsed converse message
+ * @param  {String} id Session ID
  * @param  {Object} json The Wit API response
  * @param  {Object} socket The current socket instance
  */
-function handleSuccess(json, socket) {
-  socket.emit('message', 'Gelukt ;D');
+function handleSuccess(id, json, socket) {
+  debug(json);
+  switch (json.type) {
+    case 'merge': return doMerge(json.entities, socket);
+    case 'msg': return say(json.msg, socket);
+    case 'action': return doAction(json.action, socket);
+    case 'stop': return resetConversation(json, socket);
+  }
+
+  if (json.type !== 'stop') {
+    debug('fetchWit');
+    fetchWit(id)
+      .then(res => res.data)
+      .then(res => handleSuccess(id, res, socket))
+      .catch(err => handleError(err, socket));
+  }
+}
+
+// I have no idea what this is supposed to do still
+// maybe save context to state?
+function doMerge(json, socket) {
+}
+
+/**
+ * Send message to user
+ * @param  {String} msg The message to send
+ * @param  {Object} socket The connected socket instance
+ */
+function say(msg, socket) {
+  socket.emit('message', msg);
+}
+
+/**
+ * Perform an action
+ * @param  {String} action The action to perform
+ * @param  {Object} socket The connected socket
+ */
+function doAction(action, socket) {
+}
+
+/**
+ * Bot is waiting for next conversation
+ * @param  {String} socketID The ID of the socket to reset
+ */
+function resetConversation(socketID) {
+  state.set(socketID, {
+    inProgress: false,
+  });
 }
 
 /**
@@ -77,5 +127,6 @@ function handleSuccess(json, socket) {
  */
 function handleError(err, socket) {
   console.log('❌  WIT' + err);
-  socket.emit('message', 'Oeps');
+  socket.emit('message', ':(');
 }
+
