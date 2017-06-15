@@ -31,7 +31,7 @@ function handleMessage(message, socket) {
  */
 function fetchWit(id, q) {
   const url = getUrl(id, q);
-  debug(url)
+  debug('Fetch ' + url);
   return axios({
     method: 'post',
     url,
@@ -71,7 +71,6 @@ function retrieveSession(id) {
  * @param  {Object} socket The current socket instance
  */
 function handleSuccess(id, json, socket) {
-  debug(json);
   switch (json.type) {
     case 'merge': return doMerge(json.entities, socket);
     case 'msg': return say(json.msg, socket);
@@ -80,7 +79,6 @@ function handleSuccess(id, json, socket) {
   }
 
   if (json.type !== 'stop') {
-    debug('fetchWit');
     fetchWit(id)
       .then(res => res.data)
       .then(res => handleSuccess(id, res, socket))
@@ -108,6 +106,7 @@ function say(msg, socket) {
  * @param  {Object} socket The connected socket
  */
 function doAction(action, socket) {
+  return actions[action] ? actions[action]() : console.log('❌  Wit Action missing'); // eslint-disable-line no-console
 }
 
 /**
@@ -126,7 +125,7 @@ function resetConversation(socketID) {
  * @param  {Object} socket The current socket instance
  */
 function handleError(err, socket) {
-  console.log('❌  WIT' + err);
+  console.log('❌  WIT' + err); // eslint-disable-line no-comment
   socket.emit('message', ':(');
 }
 
