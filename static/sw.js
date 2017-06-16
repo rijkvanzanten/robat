@@ -57,3 +57,23 @@ self.addEventListener('fetch', function(event) {
       })
   );
 });
+
+/* Loop through all of the caches in the service worker and deleting any caches that aren't defined in the cache whitelist. */
+
+self.addEventListener('activate', function(event) {
+  const whitelist = ['robat_cache_v1'];
+
+  // Check if installation succeeds
+  event.waitUntil(
+    // Return array of cache keys
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (whitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
