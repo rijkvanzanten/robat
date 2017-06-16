@@ -12,7 +12,14 @@ module.exports = function(io) {
 
   const actions = Object.assign({
     // Our bot has something to say
-    send({sessionId}, {text}) {
+    send({sessionId}, {text, confidence}) {
+      debug('');
+      debug(`(${confidence}) ${text.substr(0, 30)}...`);
+
+      if (confidence && confidence < 0.02) {
+        text = 'Sorry, ik snap niet wat je bedoelt.';
+      }
+
       // Retrieve socketId of user whose session belongs to
       const recipientId = sessions[sessionId].socketId;
       if (recipientId) {
