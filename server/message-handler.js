@@ -16,7 +16,7 @@ module.exports = function(io) {
       debug('');
       debug(`(${confidence}) ${text.substr(0, 30)}...`);
 
-      if (confidence && confidence < 0.02) {
+      if (confidence && confidence < 0.001) {
         text = 'Sorry, ik snap niet wat je bedoelt.';
       }
 
@@ -41,6 +41,7 @@ module.exports = function(io) {
   });
 
   function handleIncomingMessage(text, sender) {
+    wit.message(text).then(res => res).catch(err => console.log(err)); // to put in inbox
     const sessionId = findOrCreateSession(sender);
 
     // Forward message to Wit.ai Bot Engine
