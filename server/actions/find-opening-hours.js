@@ -1,9 +1,19 @@
-const debug = require('debug')('robat');
+const actions = require('../actions');
+const {firstEntityValue} = require('../utils');
 
-module.exports = ({context}) =>
-  new Promise(resolve => {
+actions.register('findOpeningHours', findOpeningHours);
 
-    debug('[WIT] Send context \n\n' + JSON.stringify(context));
+function findOpeningHours({context, entities}) {
+  const location = firstEntityValue(entities, 'obaLocation');
 
-    return resolve(context);
-  });
+  if (location) {
+    context.location = location;
+    context.openingHours = '10:00 - 15:00';
+    delete context.missingLocation;
+  } else {
+    context.missingLocation = true;
+    delete context.location;
+    delete context.openingHours;
+  }
+  return context;
+}
