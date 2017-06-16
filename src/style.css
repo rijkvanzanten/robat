@@ -173,3 +173,7 @@ form button {
   margin-right: 0.5em;
   cursor: pointer;
 }
+
+label {
+  font-size: 0;
+}
