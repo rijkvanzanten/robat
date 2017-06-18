@@ -21,7 +21,6 @@
     "type": "git",
     "url": "git+https://github.com/rijkvanzanten/robat.git"
   },
-  "author": "Rijk van Zanten <rijkvanzanten@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rijkvanzanten/robat/issues"
