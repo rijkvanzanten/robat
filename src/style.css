@@ -185,7 +185,7 @@ label {
   margin-left: 1em;
 }
 
-.doubleCheckmark:after {
+.received:after {
   content: "✓✓";
-  color:
+  color: #5EC5E8;
 }
