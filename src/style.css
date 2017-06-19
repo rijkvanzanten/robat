@@ -213,3 +213,9 @@ label {
   display: flex;
   align-items: center;
 }
+
+/* Tooltip styling */
+span:hover::before
+span:hover::after {
+  display: block;
+}
