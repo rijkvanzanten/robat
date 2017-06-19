@@ -54,13 +54,13 @@ header {
   background-color: white;
   z-index: 5;
   position: absolute;
-  padding: 0.4em 0em;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 header img {
   height: 1.5rem;
-  margin: 0.3rem auto;
-  display: block;
 }
 
 div > ul {
