@@ -40,7 +40,12 @@ module.exports = function(io) {
     logger: new log.Logger(log.INFO)
   });
 
-  function handleIncomingMessage(text, sender) {
+
+  function handleIncomingMessage(message, sender) {
+    io.to(sender).emit('messageReceived', {id: message.id});
+
+    const text = message.value;
+
     wit.message(text).then(res => res).catch(err => console.log(err)); // to put in inbox
     const sessionId = findOrCreateSession(sender);
 
@@ -83,4 +88,5 @@ module.exports = function(io) {
     }
     return sessionId;
   }
-}
+
+};

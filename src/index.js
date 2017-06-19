@@ -1,3 +1,5 @@
+const shortid = require('shortid');
+
 /* global io */
 (function () {
   const socket = io.connect();
@@ -7,9 +9,14 @@
   document.querySelector('form').addEventListener('submit', submitMessage);
 
   socket.on('message', serverMessage);
+  socket.on('messageReceived', addReceived);
   socket.on('displayResults', renderResults);
 
   function serverMessage(message) {
+    message = {
+      value: message,
+      id: 0,
+    };
     renderMessage(message, true);
     scrollMessages();
   }
@@ -19,7 +26,10 @@
    */
   function submitMessage(event) {
     const messageForm = document.querySelector('form');
-    const message = messageForm.querySelector('input[name="message"]').value;
+    const message = {
+      value: messageForm.querySelector('input[name="message"]').value,
+      id: shortid.generate(),
+    };
 
     // sockets
     socket.emit('message', message);
@@ -36,8 +46,12 @@
    * @param  {Boolean} robat Is this a message of robat
    */
   function renderMessage(message, robat = false) {
-    chatWindow.innerHTML += `<li data-user="${robat ? 'robat' : 'user'}">${message}</li>`;
+    chatWindow.innerHTML += `<li data-id="${message.id}" data-user="${robat ? 'robat' : 'user'}">${message.value}</li>`;
     scrollMessages();
+  }
+
+  function addReceived({id}) {
+    document.querySelector('[data-id="' + id + '"]').classList.add('received');
   }
 
   function renderResults(results) {
