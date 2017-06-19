@@ -47,7 +47,6 @@ body > div {
 }
 
 header {
-  overflow: auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   top: 0;
   width: 100%;
@@ -215,7 +214,37 @@ label {
 }
 
 /* Tooltip styling */
-span:hover::before
+span {
+  position: relative;
+}
+
+span:hover::before,
 span:hover::after {
   display: block;
+}
+
+span::before {
+  content: attr(data-tooltip);
+  display: none;
+  position: absolute;
+  bottom: -2em;
+  border-radius: 2px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  width: max-content;
+  max-width: 10em;
+}
+span::after {
+  content: '';
+  position: absolute;
+  bottom: -0.65em;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.4)  transparent;
+  display: none;
 }
