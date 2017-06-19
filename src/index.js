@@ -6,6 +6,15 @@
   window.addEventListener('online', updateStatus);
   window.addEventListener('offline', updateStatus);
 
+  function updateStatus() {
+    const indicator = document.querySelector('[data-indicator="status"]');
+    if(navigator.onLine) {
+      indicator.className = 'online';
+    } else {
+      indicator.className = 'offline';
+    }
+  }
+
   const chatWindow = document.querySelector('ul');
 
   document.querySelector('form').addEventListener('submit', submitMessage);
@@ -14,6 +23,7 @@
   socket.on('displayResults', renderResults);
 
   function serverMessage(message) {
+    updateStatus();
     renderMessage(message, true);
     scrollMessages();
   }
@@ -22,6 +32,7 @@
    * Reads the value of the input and sends it to renderMessageToDom
    */
   function submitMessage(event) {
+    updateStatus();
     const messageForm = document.querySelector('form');
     const message = messageForm.querySelector('input[name="message"]').value;
 

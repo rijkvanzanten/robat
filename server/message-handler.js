@@ -5,6 +5,9 @@ const {actions: customActions} = require('./actions');
 module.exports = function(io) {
   // Listen for incoming messages
   io.on('connection', socket => {
+
+    socket.emit('message', 'Hallo! Leuk dat je er bent :-)');
+
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
   });
 

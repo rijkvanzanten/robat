@@ -181,11 +181,10 @@ label {
 
 /* Indicator styling */
 
-p {
-  text-align: center;
-  font-size: 0.8em;
+.online {
+  color: green;
 }
 
-[data-indicator="online"] {
-  color: green;
+.offline {
+  color: red;
 }
