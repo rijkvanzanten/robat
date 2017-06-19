@@ -54,11 +54,12 @@ header {
   background-color: white;
   z-index: 5;
   position: absolute;
+  padding: 0.4em 0em;
 }
 
 header img {
   height: 1.5rem;
-  margin: 1rem auto;
+  margin: 0.3rem auto;
   display: block;
 }
 
@@ -176,4 +177,15 @@ form button {
 
 label {
   font-size: 0;
+}
+
+/* Indicator styling */
+
+p {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+[data-indicator="online"] {
+  color: green;
 }
