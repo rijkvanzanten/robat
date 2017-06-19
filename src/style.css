@@ -187,4 +187,15 @@ label {
 
 .offline {
   color: red;
+
+/* Chat bubble styling */
+[data-user="user"]::after {
+  content: "✓";
+  font-size: 0.5em;
+  margin-left: 1em;
+}
+
+.received::after {
+  content: "✓✓";
+  color: #5ec5e8;
 }

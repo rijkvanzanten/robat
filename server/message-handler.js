@@ -40,10 +40,15 @@ module.exports = function(io) {
   const wit = new Wit({
     accessToken: process.env.WIT_KEY,
     actions,
-    logger: new log.Logger(log.INFO)
+    logger: new log.Logger(log.INFO),
   });
 
-  function handleIncomingMessage(text, sender) {
+
+  function handleIncomingMessage(message, sender) {
+    io.to(sender).emit('messageReceived', {id: message.id});
+
+    const text = message.value;
+
     wit.message(text).then(res => res).catch(err => console.log(err)); // to put in inbox
     const sessionId = findOrCreateSession(sender);
 
@@ -59,7 +64,7 @@ module.exports = function(io) {
       debug('Waiting for user message');
 
       if (context['done']) {
-        delete sessions[sessionId]
+        delete sessions[sessionId];
       }
 
       // Update the user's current state
@@ -86,4 +91,5 @@ module.exports = function(io) {
     }
     return sessionId;
   }
-}
+
+};
