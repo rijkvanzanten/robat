@@ -179,7 +179,7 @@ label {
 }
 
 /* Chat bubble styling */
-li::after {
+[data-user="user"]::after {
   content: "✓";
   font-size: 0.5em;
   margin-left: 1em;
