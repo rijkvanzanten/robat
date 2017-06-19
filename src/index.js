@@ -2,6 +2,10 @@
 (function () {
   const socket = io.connect();
 
+  // Check for online and offline events
+  window.addEventListener('online', updateStatus);
+  window.addEventListener('offline', updateStatus);
+
   const chatWindow = document.querySelector('ul');
 
   document.querySelector('form').addEventListener('submit', submitMessage);
