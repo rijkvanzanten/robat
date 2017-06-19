@@ -4,6 +4,19 @@ const shortid = require('shortid');
 (function () {
   const socket = io.connect();
 
+  // Check for online and offline events
+  window.addEventListener('online', updateStatus);
+  window.addEventListener('offline', updateStatus);
+
+  function updateStatus() {
+    const indicator = document.querySelector('[data-indicator="status"]');
+    if(navigator.onLine) {
+      indicator.className = 'online';
+    } else {
+      indicator.className = 'offline';
+    }
+  }
+
   const chatWindow = document.querySelector('ul');
 
   document.querySelector('form').addEventListener('submit', submitMessage);
@@ -13,6 +26,7 @@ const shortid = require('shortid');
   socket.on('displayResults', renderResults);
 
   function serverMessage(message) {
+    updateStatus();
     message = {
       value: message,
       id: 0,
@@ -25,6 +39,7 @@ const shortid = require('shortid');
    * Reads the value of the input and sends it to renderMessageToDom
    */
   function submitMessage(event) {
+    updateStatus();
     const messageForm = document.querySelector('form');
     const message = {
       value: messageForm.querySelector('input[name="message"]').value,

@@ -54,12 +54,13 @@ header {
   background-color: white;
   z-index: 5;
   position: absolute;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 header img {
   height: 1.5rem;
-  margin: 1rem auto;
-  display: block;
 }
 
 div > ul {
@@ -176,6 +177,16 @@ form button {
 
 label {
   font-size: 0;
+}
+
+/* Indicator styling */
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
 }
 
 /* Chat bubble styling */
