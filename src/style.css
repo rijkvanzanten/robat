@@ -187,6 +187,7 @@ label {
 
 .offline {
   color: red;
+}
 
 /* Chat bubble styling */
 [data-user="user"]::after {
