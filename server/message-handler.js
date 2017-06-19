@@ -37,7 +37,7 @@ module.exports = function(io) {
   const wit = new Wit({
     accessToken: process.env.WIT_KEY,
     actions,
-    logger: new log.Logger(log.INFO)
+    logger: new log.Logger(log.INFO),
   });
 
 
@@ -61,7 +61,7 @@ module.exports = function(io) {
       debug('Waiting for user message');
 
       if (context['done']) {
-        delete sessions[sessionId]
+        delete sessions[sessionId];
       }
 
       // Update the user's current state

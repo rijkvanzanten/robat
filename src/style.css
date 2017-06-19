@@ -179,13 +179,13 @@ label {
 }
 
 /* Chat bubble styling */
-[data-user="user"]:after {
+[data-user="user"]::after {
   content: "✓";
   font-size: 0.5em;
   margin-left: 1em;
 }
 
-.received:after {
+.received::after {
   content: "✓✓";
-  color: #5EC5E8;
+  color: #5ec5e8;
 }
