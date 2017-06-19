@@ -177,3 +177,10 @@ form button {
 label {
   font-size: 0;
 }
+
+/* Chat bubble styling */
+li::after {
+  content: "✓";
+  font-size: 0.5em;
+  margin-left: 1em;
+}
