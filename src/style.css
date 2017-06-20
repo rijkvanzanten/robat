@@ -12,6 +12,10 @@ html {
   height: 100%;
 }
 
+:focus {
+  outline: none;
+}
+
 @media (max-width: 50em) {
   html {
     font-size: 100%;
@@ -162,6 +166,11 @@ form input {
   padding: 0.5em;
 }
 
+form input:focus,
+form input:active {
+  border: 1px solid #e52d27;
+}
+
 form button {
   -webkit-appearance: none;
   appearance: none;
@@ -177,7 +186,8 @@ form button {
   transition: 250ms;
 }
 
-form button:hover {
+form button:hover,
+form button:focus {
   background-color: #bf1510;
 }
 
