@@ -226,6 +226,7 @@ label {
 /* Tooltip styling */
 span {
   position: relative;
+  font-size: 1.3em;
 }
 
 span:hover::before {
@@ -245,7 +246,7 @@ span::before {
   transition: all 250ms ease-in;
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -2em;
+  bottom: -1.4em;
   border-radius: 2px;
   color: white;
   background-color: rgba(29, 181, 70, 1);
@@ -261,7 +262,7 @@ span::after {
   transition: all 250ms ease-in;
   content: '';
   position: absolute;
-  bottom: -0.6em;
+  bottom: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
