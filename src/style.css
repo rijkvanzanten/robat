@@ -279,3 +279,12 @@ span::after {
 }
 
 /* Face animation */
+#eye_right {
+  transform: scaleY(1);
+  transition: transform 100ms ease-in-out;
+  transform-origin: center center;
+}
+
+svg:hover #eye_right {
+  transform: scaleY(0.5);
+}
