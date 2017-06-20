@@ -256,3 +256,11 @@ span::after {
   border-style: solid;
   border-color: transparent transparent rgba(29, 181, 70, 1)  transparent;
 }
+
+[data-tooltip="offline"]::before {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+[data-tooltip="offline"]::after {
+  border-color: transparent transparent rgba(255, 0, 0, 1) transparent;
+}
