@@ -19,7 +19,10 @@ module.exports = {
       film: 'movie',
     };
 
+    if (!types[val]) {
+      console.log(val + '  NOT TRANSLATED');
+    }
+
     return types[val] || val;
   },
 };
-
