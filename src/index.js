@@ -9,7 +9,9 @@ const shortid = require('shortid');
   window.addEventListener('offline', updateStatus);
 
   function updateStatus() {
+    // Select the indicator element
     const indicator = document.querySelector('[data-indicator="status"]');
+    // Add classes to style the dot
     if(navigator.onLine) {
       indicator.className = 'online';
     } else {
