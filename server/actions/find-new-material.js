@@ -16,7 +16,7 @@ function findNewMaterial({context, entities}) {
     return OBAClient.get('search', {
       q: `author="${author}"`,
       sort: 'year(default)',
-      ps: 1
+      ps: 1,
     })
       .then(res => JSON.parse(res))
       .then(res => {
