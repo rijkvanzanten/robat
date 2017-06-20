@@ -220,17 +220,18 @@ span {
 
 span:hover::before {
   opacity: 1;
-  padding: 0em .5em;
+  padding: 0 0.5em;
 }
+
 span:hover::after,
 span:hover::before {
   opacity: 1;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 span::before {
   opacity: 0;
-  padding: 0em .5em;
+  padding: 0 0.5em;
   transition: all 250ms ease-in;
   content: attr(data-tooltip);
   position: absolute;
@@ -244,6 +245,7 @@ span::before {
   width: max-content;
   max-width: 10em;
 }
+
 span::after {
   opacity: 0;
   transition: all 250ms ease-in;
