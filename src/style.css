@@ -47,7 +47,6 @@ body > div {
 }
 
 header {
-  overflow: auto;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   top: 0;
   width: 100%;
@@ -182,11 +181,11 @@ label {
 
 /* Indicator styling */
 
-.online {
+[data-tooltip="online"] {
   color: green;
 }
 
-.offline {
+[data-tooltip="offline"] {
   color: red;
 }
 
@@ -212,4 +211,58 @@ label {
 .logo {
   display: flex;
   align-items: center;
+}
+
+/* Tooltip styling */
+span {
+  position: relative;
+}
+
+span:hover::before {
+  opacity: 1;
+  padding: 0 0.5em;
+}
+
+span:hover::after,
+span:hover::before {
+  opacity: 1;
+  font-size: 0.8em;
+}
+
+span::before {
+  opacity: 0;
+  padding: 0 0.5em;
+  transition: all 250ms ease-in;
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -2em;
+  border-radius: 2px;
+  color: white;
+  background-color: rgba(29, 181, 70, 1);
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  width: max-content;
+  max-width: 10em;
+}
+
+span::after {
+  opacity: 0;
+  transition: all 250ms ease-in;
+  content: '';
+  position: absolute;
+  bottom: -0.6em;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent rgba(29, 181, 70, 1)  transparent;
+}
+
+[data-tooltip="offline"]::before {
+  background-color: rgba(255, 0, 0, 1);
+}
+
+[data-tooltip="offline"]::after {
+  border-color: transparent transparent rgba(255, 0, 0, 1) transparent;
 }

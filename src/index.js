@@ -9,11 +9,11 @@ const shortid = require('shortid');
   window.addEventListener('offline', updateStatus);
 
   function updateStatus() {
-    const indicator = document.querySelector('[data-indicator="status"]');
+    // Select the indicator element
     if(navigator.onLine) {
-      indicator.className = 'online';
+      document.querySelector('[data-tooltip]').setAttribute('data-tooltip', 'online');
     } else {
-      indicator.className = 'offline';
+      document.querySelector('[data-tooltip]').setAttribute('data-tooltip', 'offline');
     }
   }
 
