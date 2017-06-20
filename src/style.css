@@ -181,11 +181,11 @@ label {
 
 /* Indicator styling */
 
-.online {
+[data-tooltip="online"] {
   color: green;
 }
 
-.offline {
+[data-tooltip="offline"] {
   color: red;
 }
 

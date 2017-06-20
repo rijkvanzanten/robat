@@ -10,13 +10,9 @@ const shortid = require('shortid');
 
   function updateStatus() {
     // Select the indicator element
-    const indicator = document.querySelector('[data-indicator="status"]');
-    // Add classes to style the dot
     if(navigator.onLine) {
-      indicator.className = 'online';
       document.querySelector('[data-tooltip]').setAttribute('data-tooltip', 'online');
     } else {
-      indicator.className = 'offline';
       document.querySelector('[data-tooltip]').setAttribute('data-tooltip', 'offline');
     }
   }
