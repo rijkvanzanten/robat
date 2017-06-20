@@ -6,7 +6,7 @@ module.exports = function(io) {
   // Listen for incoming messages
   io.on('connection', socket => {
 
-    socket.emit('message', 'Hallo! Leuk dat je er bent :-)');
+    socket.emit('message', 'Hallo ik ben Robat! Leuk dat je er bent :-)');
 
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
   });
