@@ -17,6 +17,9 @@ const shortid = require('shortid');
     }
   }
 
+  // Array of messages
+  const messageList = [];
+
   const chatWindow = document.querySelector('ul');
 
   document.querySelector('form').addEventListener('submit', submitMessage);
@@ -45,6 +48,8 @@ const shortid = require('shortid');
       value: messageForm.querySelector('input[name="message"]').value,
       id: shortid.generate(),
     };
+
+    messageList.push(message);
 
     // sockets
     socket.emit('message', message);
