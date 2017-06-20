@@ -12,6 +12,10 @@ html {
   height: 100%;
 }
 
+:focus {
+  outline: none;
+}
+
 @media (max-width: 50em) {
   html {
     font-size: 100%;
@@ -32,7 +36,7 @@ body > div {
 
 @media screen and (min-width: 796px) {
   body {
-    background-image: linear-gradient(-90deg, #992459, #ff5b0f);
+    background-image: linear-gradient(-90deg, #e52d27, #b31217);
   }
 
   body > div {
@@ -162,10 +166,16 @@ form input {
   padding: 0.5em;
 }
 
+form input:focus,
+form input:active {
+  border: 1px solid #e52d27;
+}
+
 form button {
   -webkit-appearance: none;
   appearance: none;
-  background-color: transparent;
+  background-color: #e52d27;
+  border-radius: 100%;
   border: 0;
   color: #e30111;
   text-transform: uppercase;
@@ -173,6 +183,16 @@ form button {
   font-size: inherit;
   margin-right: 0.5em;
   cursor: pointer;
+  transition: 250ms;
+}
+
+form button:hover,
+form button:focus {
+  background-color: #bf1510;
+}
+
+.send-icon {
+  padding-top: 0.4em;
 }
 
 label {
@@ -216,6 +236,7 @@ label {
 /* Tooltip styling */
 span {
   position: relative;
+  font-size: 1.3em;
 }
 
 span:hover::before {
@@ -235,7 +256,7 @@ span::before {
   transition: all 250ms ease-in;
   content: attr(data-tooltip);
   position: absolute;
-  bottom: -2em;
+  bottom: -1.4em;
   border-radius: 2px;
   color: white;
   background-color: rgba(29, 181, 70, 1);
@@ -251,7 +272,7 @@ span::after {
   transition: all 250ms ease-in;
   content: '';
   position: absolute;
-  bottom: -0.6em;
+  bottom: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
@@ -265,4 +286,15 @@ span::after {
 
 [data-tooltip="offline"]::after {
   border-color: transparent transparent rgba(255, 0, 0, 1) transparent;
+}
+
+/* Face animation */
+#eye_right {
+  transform: scaleY(1);
+  transition: transform 100ms ease-in-out;
+  transform-origin: center center;
+}
+
+svg:hover #eye_right {
+  transform: scaleY(0.5);
 }
