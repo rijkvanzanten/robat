@@ -181,7 +181,7 @@ form button:hover {
   background-color: #bf1510;
 }
 
-svg {
+.send-icon {
   padding-top: 0.4em;
 }
 
@@ -277,3 +277,5 @@ span::after {
 [data-tooltip="offline"]::after {
   border-color: transparent transparent rgba(255, 0, 0, 1) transparent;
 }
+
+/* Face animation */
