@@ -165,7 +165,8 @@ form input {
 form button {
   -webkit-appearance: none;
   appearance: none;
-  background-color: transparent;
+  background-color: #e52d27;
+  border-radius: 100%;
   border: 0;
   color: #e30111;
   text-transform: uppercase;
@@ -173,6 +174,10 @@ form button {
   font-size: inherit;
   margin-right: 0.5em;
   cursor: pointer;
+}
+
+svg {
+  padding-top: 0.4em;
 }
 
 label {
