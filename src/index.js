@@ -4,16 +4,14 @@ const localforage = require('localforage');
 /* global io */
 (function () {
   const socket = io.connect();
+  let messageList = [];
 
-  window.onload = function() {
-    renderMessageList();
-  };
-
-  function renderMessageList() {
-    localforage.getItem('chatMessages', function(err, messages) {
-      renderMessage(messages);
-    });
-  }
+  localforage.getItem('chatMessages', function(err, data) {
+    if (data.messageList) {
+      messageList = data.messageList;
+      data.messageList.forEach(message => renderMessage(message, message.id === 0));
+    }
+  });
 
   // Check for online and offline events
   window.addEventListener('online', updateStatus);
@@ -27,9 +25,6 @@ const localforage = require('localforage');
       document.querySelector('[data-tooltip]').setAttribute('data-tooltip', 'offline');
     }
   }
-
-  // Array of messages
-  const messageList = [];
 
   // Set the messageList array in localstorage
   function setLocalStorage() {
@@ -53,8 +48,8 @@ const localforage = require('localforage');
       id: 0,
     };
     messageList.push(message);
-    setLocalStorage();
     renderMessage(message, true);
+    setLocalStorage();
     scrollMessages();
   }
 
