@@ -1,12 +1,29 @@
-const shortid = require('shortid');
-
 /* global io */
-(function () {
+const shortid = require('shortid');
+const localforage = require('localforage');
+
+let messageList = [];
+const chatWindow = document.querySelector('ul');
+
+localforage.getItem('chatMessages', init);
+
+function init(err, data) {
+  if (data && data.messageList) {
+    messageList = data.messageList;
+    data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
+  }
+
   const socket = io.connect();
 
   // Check for online and offline events
   window.addEventListener('online', updateStatus);
   window.addEventListener('offline', updateStatus);
+
+  document.querySelector('form').addEventListener('submit', submitMessage);
+
+  socket.on('message', serverMessage);
+  socket.on('messageReceived', addReceived);
+  socket.on('displayResults', renderResults);
 
   function updateStatus() {
     // Select the indicator element
@@ -17,13 +34,14 @@ const shortid = require('shortid');
     }
   }
 
-  const chatWindow = document.querySelector('ul');
 
-  document.querySelector('form').addEventListener('submit', submitMessage);
-
-  socket.on('message', serverMessage);
-  socket.on('messageReceived', addReceived);
-  socket.on('displayResults', renderResults);
+  // Set the messageList array in localstorage
+  function setLocalStorage(message) {
+    messageList.push(message);
+    localforage.setItem('chatMessages', {
+      messageList: messageList,
+    });
+  }
 
   function serverMessage(message) {
     updateStatus();
@@ -31,10 +49,10 @@ const shortid = require('shortid');
       value: message,
       id: 0,
     };
+
     renderMessage(message, true);
-
     document.querySelector('#loader').classList.add('hide');
-
+    setLocalStorage(message);
     scrollMessages();
   }
 
@@ -48,6 +66,8 @@ const shortid = require('shortid');
       value: messageForm.querySelector('input[name="message"]').value,
       id: shortid.generate(),
     };
+
+    setLocalStorage(message);
 
     // sockets
     socket.emit('message', message);
@@ -63,8 +83,8 @@ const shortid = require('shortid');
    * @param  {String} message The message to render
    * @param  {Boolean} robat Is this a message of robat
    */
-  function renderMessage(message, robat = false) {
-    chatWindow.innerHTML += `<li data-id="${message.id}" data-user="${robat ? 'robat' : 'user'}">${message.value}</li>`;
+  function renderMessage(message, robat = false, fromStorage = false) {
+    chatWindow.innerHTML += `<li class="${fromStorage && !robat ? 'received' : ''}" data-id="${message.id}" data-user="${robat ? 'robat' : 'user'}">${message.value}</li>`;
     scrollMessages();
   }
 
@@ -113,4 +133,4 @@ const shortid = require('shortid');
     // Where to find the service worker
     navigator.serviceWorker.register('/sw.js');
   }
-}());
+}
