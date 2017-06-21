@@ -158,17 +158,18 @@ form {
   bottom: 0;
   background-color: white;
   height: 70px;
+  padding: 0.5rem;
 }
 
 form input {
   -webkit-appearance: none;
   appearance: none;
-  margin: 0.5rem;
   flex-grow: 1;
   font-size: inherit;
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 0.5em;
+  margin-right: 0.5rem;
 }
 
 form input:focus,
@@ -182,22 +183,24 @@ form button {
   background-color: #e52d27;
   border-radius: 100%;
   border: 0;
-  color: #e30111;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: inherit;
-  margin-right: 0.5em;
   cursor: pointer;
   transition: 250ms;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+}
+
+form button svg {
+  width: 36px;
 }
 
 form button:hover,
 form button:focus {
   background-color: #bf1510;
-}
-
-.send-icon {
-  padding-top: 0.4em;
 }
 
 label {
