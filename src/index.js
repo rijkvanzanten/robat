@@ -5,19 +5,26 @@ const localforage = require('localforage');
 (function () {
   const socket = io.connect();
   let messageList = [];
+  const chatWindow = document.querySelector('ul');
 
   localforage.getItem('chatMessages', function(err, data) {
     if (data.messageList) {
       messageList = data.messageList;
       // Remove the first message from the array (intro message)
-      messageList.shift();
-      data.messageList.forEach(message => renderMessage(message, message.id === 0));
+      data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
     }
   });
 
   // Check for online and offline events
   window.addEventListener('online', updateStatus);
   window.addEventListener('offline', updateStatus);
+
+
+  document.querySelector('form').addEventListener('submit', submitMessage);
+
+  socket.on('message', serverMessage);
+  socket.on('messageReceived', addReceived);
+  socket.on('displayResults', renderResults);
 
   function updateStatus() {
     // Select the indicator element
@@ -30,19 +37,12 @@ const localforage = require('localforage');
 
 
   // Set the messageList array in localstorage
-  function setLocalStorage() {
+  function setLocalStorage(message) {
+    messageList.push(message);
     localforage.setItem('chatMessages', {
       messageList: messageList,
     });
   }
-
-  const chatWindow = document.querySelector('ul');
-
-  document.querySelector('form').addEventListener('submit', submitMessage);
-
-  socket.on('message', serverMessage);
-  socket.on('messageReceived', addReceived);
-  socket.on('displayResults', renderResults);
 
   function serverMessage(message) {
     updateStatus();
@@ -50,10 +50,10 @@ const localforage = require('localforage');
       value: message,
       id: 0,
     };
-    messageList.push(message);
+
     renderMessage(message, true);
     document.querySelector('#loader').classList.add('hide');
-    setLocalStorage();
+    setLocalStorage(message);
     scrollMessages();
   }
 
@@ -68,14 +68,12 @@ const localforage = require('localforage');
       id: shortid.generate(),
     };
 
-    messageList.push(message);
-    setLocalStorage();
+    setLocalStorage(message);
 
     // sockets
     socket.emit('message', message);
 
     renderMessage(message);
-
 
     messageForm.querySelector('input[name="message"]').value = '';
     event.preventDefault();
@@ -86,8 +84,8 @@ const localforage = require('localforage');
    * @param  {String} message The message to render
    * @param  {Boolean} robat Is this a message of robat
    */
-  function renderMessage(message, robat = false) {
-    chatWindow.innerHTML += `<li data-id="${message.id}" data-user="${robat ? 'robat' : 'user'}">${message.value}</li>`;
+  function renderMessage(message, robat = false, fromStorage = false) {
+    chatWindow.innerHTML += `<li class="${fromStorage && !robat ? 'received' : ''}" data-id="${message.id}" data-user="${robat ? 'robat' : 'user'}">${message.value}</li>`;
     scrollMessages();
   }
 
