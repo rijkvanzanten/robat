@@ -30,6 +30,7 @@ const shortid = require('shortid');
 
   function serverMessage(message) {
     updateStatus();
+    messageList.push(message);
     message = {
       value: message,
       id: 0,
