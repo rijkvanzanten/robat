@@ -5,7 +5,6 @@ const {actions: customActions} = require('./actions');
 module.exports = function(io) {
   // Listen for incoming messages
   io.on('connection', socket => {
-
     socket.emit('message', 'Hallo ik ben Robat! Leuk dat je er bent :-)');
 
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
@@ -15,14 +14,7 @@ module.exports = function(io) {
 
   const actions = Object.assign({
     // Our bot has something to say
-    send({sessionId}, {text, confidence}) {
-      debug('');
-      debug(`(${confidence}) ${text.substr(0, 30)}...`);
-
-      if (confidence && confidence < 0.001) {
-        text = 'Sorry, ik snap niet wat je bedoelt.';
-      }
-
+    send({sessionId}, {text}) {
       // Retrieve socketId of user whose session belongs to
       const recipientId = sessions[sessionId].socketId;
       if (recipientId) {
@@ -33,6 +25,10 @@ module.exports = function(io) {
 
       // Let the bot know we're done
       return Promise.resolve();
+    },
+    stop({sessionId, context}) {
+      delete sessions[sessionId];
+      return {}; // send empty context (reset)
     },
   }, customActions);
 
@@ -63,12 +59,10 @@ module.exports = function(io) {
       // It's waiting for further messages to proceed
       debug('Waiting for user message');
 
-      if (context['done']) {
-        delete sessions[sessionId];
-      }
-
       // Update the user's current state
-      sessions[sessionId].context = context;
+      if (sessions[sessionId]) {
+        sessions[sessionId].context = context;
+      }
     }).catch(err => {
       console.log('Error from Wit: ', err); // eslint-disable-line no-console
     });
@@ -91,5 +85,4 @@ module.exports = function(io) {
     }
     return sessionId;
   }
-
 };
