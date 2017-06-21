@@ -56,29 +56,33 @@ header {
   width: 100%;
   background-color: white;
   z-index: 5;
-  position: absolute;
   padding: 1em 2em;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 }
 
 header img {
   height: 1.5rem;
 }
 
-div > ul {
-  list-style: none;
-  padding: 0.5em;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.chat-wrapper {
+  position: relative;
   background-image: url('/img/bg.png');
   width: 100%;
-  height: 100%;
+  height: calc(100% - 80px - 70px);
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.chat-wrapper ul {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 0.5em;
 }
 
 li {
@@ -153,6 +157,7 @@ form {
   width: 100%;
   bottom: 0;
   background-color: white;
+  height: 70px;
 }
 
 form input {
@@ -230,6 +235,7 @@ label {
   background-color: #ececec;
   border-radius: 6px;
   order: 15;
+  flex-shrink: 0;
 }
 
 #loader.hide {
