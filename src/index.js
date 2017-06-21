@@ -10,8 +10,8 @@ const localforage = require('localforage');
   };
 
   function renderMessageList() {
-    localforage.getItem('chatMessages', function(err, data) {
-      renderMessage(data);
+    localforage.getItem('chatMessages', function(err, messages) {
+      renderMessage(messages);
     });
   }
 
@@ -32,9 +32,11 @@ const localforage = require('localforage');
   const messageList = [];
 
   // Set the messageList array in localstorage
-  localforage.setItem('chatMessages', {
-    messageList: messageList,
-  });
+  function setLocalStorage() {
+    localforage.setItem('chatMessages', {
+      messageList: messageList,
+    });
+  }
 
   const chatWindow = document.querySelector('ul');
 
@@ -51,6 +53,7 @@ const localforage = require('localforage');
       id: 0,
     };
     messageList.push(message);
+    setLocalStorage();
     renderMessage(message, true);
     scrollMessages();
   }
@@ -67,11 +70,13 @@ const localforage = require('localforage');
     };
 
     messageList.push(message);
+    setLocalStorage();
 
     // sockets
     socket.emit('message', message);
 
     renderMessage(message);
+
 
     messageForm.querySelector('input[name="message"]').value = '';
     event.preventDefault();
