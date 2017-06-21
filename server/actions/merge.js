@@ -1,6 +1,9 @@
 const actions = require('../actions');
 actions.register('merge', merge);
 
+/**
+ * Merge returns all entities send by Robat in context
+ */
 function merge({context, entities}) {
   const keys = Object.keys(entities);
 
