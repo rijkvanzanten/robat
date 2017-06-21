@@ -26,7 +26,7 @@ module.exports = function(io) {
       // Let the bot know we're done
       return Promise.resolve();
     },
-    stop({sessionId, context}) {
+    stop({sessionId}) {
       delete sessions[sessionId];
       return {}; // send empty context (reset)
     },
@@ -45,7 +45,7 @@ module.exports = function(io) {
 
     const text = message.value;
 
-    wit.message(text).then(res => res).catch(err => console.log(err)); // to put in inbox
+    wit.message(text).then(res => res).catch(err => console.log(err)); // eslint-disable-line no-console
     const sessionId = findOrCreateSession(sender);
 
     // Forward message to Wit.ai Bot Engine

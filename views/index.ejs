@@ -11,7 +11,7 @@
     <div>
       <header>
         <div class="logo">
-          <svg class="icon" viewBox="0 0 142 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <svg onclick="" class="icon" viewBox="0 0 142 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <defs>
                   <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
                       <stop stop-color="#CB0000" offset="0%"></stop>
@@ -54,15 +54,17 @@
           </svg>
           <img src="/img/robat-logo.svg" alt="Robat Logo">
         </div>
-        <span data-tooltip="" data-indicator="status">●</span>
+        <span onclick="" data-tooltip="" data-indicator="status">●</span>
       </header>
-      <ul>
-        <div id="loader">
-          <div class="dot left"></div>
-          <div class="dot center"></div>
-          <div class="dot right"></div>
-        </div>
-      </ul>
+      <div class="chat-wrapper">
+        <ul>
+          <div id="loader">
+            <div class="dot left"></div>
+            <div class="dot center"></div>
+            <div class="dot right"></div>
+          </div>
+        </ul>
+      </div>
       <form action="/" method="post">
         <label for="message">Message</label>
           <input id="message" type="text" name="message" placeholder="Typ een bericht.." autofocus>

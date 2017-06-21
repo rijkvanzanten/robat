@@ -6,13 +6,10 @@ actions.register('materialAmount', materialAmount);
 
 function materialAmount({context, entities}) {
   const type = firstEntityValue(entities, 'type');
-  console.log(entities, type);
 
   if (type) {
     context.type = type;
     delete context.missingType;
-
-    console.log(translateType(type));
 
     return OBAClient.get('search', {
       q: 'id:*',
@@ -27,7 +24,7 @@ function materialAmount({context, entities}) {
         return context;
 
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err)); // eslint-disable-line no-console
 
   } else if (!type) {
     context.missingType = true;

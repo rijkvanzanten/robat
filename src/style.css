@@ -56,29 +56,33 @@ header {
   width: 100%;
   background-color: white;
   z-index: 5;
-  position: absolute;
   padding: 1em 2em;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 }
 
 header img {
   height: 1.5rem;
 }
 
-div > ul {
-  list-style: none;
-  padding: 0.5em;
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.chat-wrapper {
+  position: relative;
   background-image: url('/img/bg.png');
   width: 100%;
-  height: 100%;
+  height: calc(100% - 80px - 70px);
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.chat-wrapper ul {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  list-style: none;
+  padding: 0.5em;
 }
 
 li {
@@ -153,17 +157,19 @@ form {
   width: 100%;
   bottom: 0;
   background-color: white;
+  height: 70px;
+  padding: 0.5rem;
 }
 
 form input {
   -webkit-appearance: none;
   appearance: none;
-  margin: 0.5rem;
   flex-grow: 1;
   font-size: inherit;
   border: 1px solid #efefef;
   border-radius: 4px;
   padding: 0.5em;
+  margin-right: 0.5rem;
 }
 
 form input:focus,
@@ -177,22 +183,24 @@ form button {
   background-color: #e52d27;
   border-radius: 100%;
   border: 0;
-  color: #e30111;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: inherit;
-  margin-right: 0.5em;
   cursor: pointer;
   transition: 250ms;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+}
+
+form button svg {
+  width: 36px;
 }
 
 form button:hover,
 form button:focus {
   background-color: #bf1510;
-}
-
-.send-icon {
-  padding-top: 0.4em;
 }
 
 label {
@@ -230,6 +238,7 @@ label {
   background-color: #ececec;
   border-radius: 6px;
   order: 15;
+  flex-shrink: 0;
 }
 
 #loader.hide {
@@ -244,16 +253,15 @@ label {
   border-radius: 50%;
   position: relative;
   margin-right: 0.1em;
-  -webkit-animation: dots 1.5s ease-in-out infinite;
   animation: dots 1.5s ease-in-out infinite;
 }
 
 .center {
-  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .right {
-  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.3s;
 }
 
 @-webkit-keyframes dots {
@@ -286,13 +294,16 @@ span {
   font-size: 1.3em;
 }
 
-span:hover::before {
+span:hover::before,
+span:focus::before {
   opacity: 1;
   padding: 0 0.5em;
 }
 
 span:hover::after,
-span:hover::before {
+span:focus::after,
+span:hover::before,
+span:focus::before {
   opacity: 1;
   font-size: 0.8em;
 }
@@ -342,6 +353,7 @@ span::after {
   transform-origin: center center;
 }
 
-svg:hover #eye_right {
+svg:hover #eye_right,
+svg:focus #eye_right {
   transform: scaleY(0.5);
 }

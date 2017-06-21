@@ -35,7 +35,7 @@ self.addEventListener('fetch', function(event) {
           return response;
         }
         // Clone the event
-        const fetchRequest = event.request.clone();
+        event.request.clone();
 
         return fetch(event.request).then(
           function(response) {
