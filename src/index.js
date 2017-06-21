@@ -49,12 +49,15 @@ const shortid = require('shortid');
       id: shortid.generate(),
     };
 
-    // sockets
-    socket.emit('message', message);
+    if (message.value.length > 0) {
+      // sockets
+      socket.emit('message', message);
 
-    renderMessage(message);
+      renderMessage(message);
 
-    messageForm.querySelector('input[name="message"]').value = '';
+      messageForm.querySelector('input[name="message"]').value = '';
+    }
+
     event.preventDefault();
   }
 
