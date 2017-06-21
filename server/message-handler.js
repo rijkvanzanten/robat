@@ -3,13 +3,6 @@ const {Wit, log} = require('node-wit');
 const {actions: customActions} = require('./actions');
 
 module.exports = function(io) {
-  // Listen for incoming messages
-  io.on('connection', socket => {
-    socket.emit('message', 'Hallo ik ben Robat! Leuk dat je er bent :-)');
-
-    socket.on('message', msg => handleIncomingMessage(msg, socket.id));
-  });
-
   const sessions = {};
 
   const actions = Object.assign({
@@ -39,6 +32,29 @@ module.exports = function(io) {
     logger: new log.Logger(log.INFO),
   });
 
+  // Listen for incoming messages
+  io.on('connection', socket => {
+    socket.emit('messageRecieved'); // starts typing animation
+
+    const sessionId = findOrCreateSession(socket.id);
+
+    wit.runActions(sessionId, '[start-conversation]', sessions[sessionId].context)
+    .then(context => {
+      // Our bot did everything it had to do
+      // It's waiting for further messages to proceed
+      debug('Waiting for user message');
+
+      // Update the user's current state
+      if (sessions[sessionId]) {
+        sessions[sessionId].context = context;
+      }
+    })
+    .catch(err => {
+      console.log('Error from Wit: ', err); // eslint-disable-line no-console
+    });
+
+    socket.on('message', msg => handleIncomingMessage(msg, socket.id));
+  });
 
   function handleIncomingMessage(message, sender) {
     io.to(sender).emit('messageReceived', {id: message.id});
