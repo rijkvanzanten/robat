@@ -1,24 +1,23 @@
+/* global io */
 const shortid = require('shortid');
 const localforage = require('localforage');
 
-/* global io */
-(function () {
-  const socket = io.connect();
-  let messageList = [];
-  const chatWindow = document.querySelector('ul');
+let messageList = [];
+const chatWindow = document.querySelector('ul');
 
-  localforage.getItem('chatMessages', function(err, data) {
-    if (data.messageList) {
-      messageList = data.messageList;
-      // Remove the first message from the array (intro message)
-      data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
-    }
-  });
+localforage.getItem('chatMessages', init);
+
+function init(err, data) {
+  if (data && data.messageList) {
+    messageList = data.messageList;
+    data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
+  }
+
+  const socket = io.connect();
 
   // Check for online and offline events
   window.addEventListener('online', updateStatus);
   window.addEventListener('offline', updateStatus);
-
 
   document.querySelector('form').addEventListener('submit', submitMessage);
 
@@ -133,4 +132,4 @@ const localforage = require('localforage');
     // Where to find the service worker
     navigator.serviceWorker.register('/sw.js');
   }
-}());
+}
