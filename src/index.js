@@ -32,6 +32,9 @@ const shortid = require('shortid');
       id: 0,
     };
     renderMessage(message, true);
+
+    document.querySelector('#loader').classList.add('hide');
+    
     scrollMessages();
   }
 
@@ -67,6 +70,7 @@ const shortid = require('shortid');
 
   function addReceived({id}) {
     document.querySelector('[data-id="' + id + '"]').classList.add('received');
+    document.querySelector('#loader').classList.remove('hide');
   }
 
   function renderResults(results) {
