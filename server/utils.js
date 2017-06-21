@@ -20,7 +20,7 @@ module.exports = {
     };
 
     if (!types[val]) {
-      console.log(val + '  NOT TRANSLATED');
+      console.log(val + '  NOT TRANSLATED'); // eslint-disable-line no-console
     }
 
     return types[val] || val;
