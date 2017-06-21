@@ -49,13 +49,8 @@ const localforage = require('localforage');
     };
     messageList.push(message);
     renderMessage(message, true);
-<<<<<<< HEAD
-    setLocalStorage();
-=======
-
     document.querySelector('#loader').classList.add('hide');
-    
->>>>>>> 72e9b1fff24b75e4dd22f58264e981216e160dab
+    setLocalStorage();
     scrollMessages();
   }
 
