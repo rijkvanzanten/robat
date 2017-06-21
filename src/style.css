@@ -294,13 +294,16 @@ span {
   font-size: 1.3em;
 }
 
-span:hover::before {
+span:hover::before,
+span:focus::before{
   opacity: 1;
   padding: 0 0.5em;
 }
 
 span:hover::after,
-span:hover::before {
+span:focus::after,
+span:hover::before,
+span:focus::before{
   opacity: 1;
   font-size: 0.8em;
 }
@@ -350,6 +353,7 @@ span::after {
   transform-origin: center center;
 }
 
-svg:hover #eye_right {
+svg:hover #eye_right,
+svg:focus #eye_right {
   transform: scaleY(0.5);
 }
