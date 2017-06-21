@@ -9,6 +9,8 @@ const localforage = require('localforage');
   localforage.getItem('chatMessages', function(err, data) {
     if (data.messageList) {
       messageList = data.messageList;
+      // Remove the first message from the array (intro message)
+      messageList.shift();
       data.messageList.forEach(message => renderMessage(message, message.id === 0));
     }
   });
@@ -26,11 +28,13 @@ const localforage = require('localforage');
     }
   }
 
+
   // Set the messageList array in localstorage
   function setLocalStorage() {
     localforage.setItem('chatMessages', {
       messageList: messageList,
     });
+    console.log(messageList);
   }
 
   const chatWindow = document.querySelector('ul');
