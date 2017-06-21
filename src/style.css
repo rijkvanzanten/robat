@@ -244,16 +244,15 @@ label {
   border-radius: 50%;
   position: relative;
   margin-right: 0.1em;
-  -webkit-animation: dots 1.5s ease-in-out infinite;
   animation: dots 1.5s ease-in-out infinite;
 }
 
 .center {
-  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .right {
-  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.3s;
 }
 
 @-webkit-keyframes dots {
