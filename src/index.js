@@ -34,7 +34,6 @@ const localforage = require('localforage');
     localforage.setItem('chatMessages', {
       messageList: messageList,
     });
-    console.log(messageList);
   }
 
   const chatWindow = document.querySelector('ul');
