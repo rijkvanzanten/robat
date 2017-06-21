@@ -1,8 +1,19 @@
 const shortid = require('shortid');
+const localforage = require('localforage');
 
 /* global io */
 (function () {
   const socket = io.connect();
+
+  window.onload = function() {
+    renderMessageList();
+  };
+
+  function renderMessageList() {
+    localforage.getItem('chatMessages', function(err, data) {
+      renderMessage(data);
+    });
+  }
 
   // Check for online and offline events
   window.addEventListener('online', updateStatus);
@@ -19,6 +30,11 @@ const shortid = require('shortid');
 
   // Array of messages
   const messageList = [];
+
+  // Set the messageList array in localstorage
+  localforage.setItem('chatMessages', {
+    messageList: messageList,
+  });
 
   const chatWindow = document.querySelector('ul');
 
