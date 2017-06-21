@@ -295,7 +295,7 @@ span {
 }
 
 span:hover::before,
-span:focus::before{
+span:focus::before {
   opacity: 1;
   padding: 0 0.5em;
 }
@@ -303,7 +303,7 @@ span:focus::before{
 span:hover::after,
 span:focus::after,
 span:hover::before,
-span:focus::before{
+span:focus::before {
   opacity: 1;
   font-size: 0.8em;
 }
