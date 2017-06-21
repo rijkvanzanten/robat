@@ -221,6 +221,53 @@ label {
   color: #5ec5e8;
 }
 
+#loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+  width: 5em;
+  background-color: #ececec;
+  border-radius: 6px;
+  order: 15;
+}
+
+#loader.hide {
+  display: none;
+}
+
+.dot {
+  height: 0.5em;
+  width: 0.5em;
+  background-color: #aaa;
+  opacity: 0.3;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 0.1em;
+  -webkit-animation: dots 1.5s ease-in-out infinite;
+  animation: dots 1.5s ease-in-out infinite;
+}
+
+.center {
+  -webkit-animation-delay: 0.3s;
+}
+
+.right {
+  -webkit-animation-delay: 0.6s;
+}
+
+@-webkit-keyframes dots {
+  0% {
+    opacity: 1;
+  }
+}
+
+@keyframes dots {
+  0% {
+    opacity: 1;
+  }
+}
+
 .icon {
   border: 2px red solid;
   border-radius: 100%;
