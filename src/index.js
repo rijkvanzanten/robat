@@ -52,11 +52,7 @@ function init(err, data) {
 
     renderMessage(message, true);
     document.querySelector('#loader').classList.add('hide');
-<<<<<<< HEAD
     setLocalStorage(message);
-=======
-
->>>>>>> 9d546be04a40669126ecb0a4dc7fc6407ba508d0
     scrollMessages();
   }
 
