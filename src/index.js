@@ -13,6 +13,7 @@ function init(err, data) {
     data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
   }
 
+  addTimeStamp();
   const socket = io.connect();
 
   // Check for online and offline events
@@ -118,6 +119,12 @@ function init(err, data) {
         </li>
       `;
     }
+  }
+
+  function addTimeStamp() {
+    const date = new Date();
+    const day = date.getDate();
+    chatWindow.innerHTML += `<div class="timestamp">${day}</div>`;
   }
 
   /**
