@@ -364,4 +364,5 @@ svg:focus #eye_right {
   text-transform: uppercase;
   font-size: 0.8em;
   opacity: 0.5;
+  margin-top: 1em;
 }
