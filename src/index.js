@@ -67,14 +67,16 @@ function init(err, data) {
       id: shortid.generate(),
     };
 
-    setLocalStorage(message);
+    if (message.value.length > 0) {
+      // sockets
+      socket.emit('message', message);
+      setLocalStorage(message);
 
-    // sockets
-    socket.emit('message', message);
+      renderMessage(message);
 
-    renderMessage(message);
+      messageForm.querySelector('input[name="message"]').value = '';
+    }
 
-    messageForm.querySelector('input[name="message"]').value = '';
     event.preventDefault();
   }
 
