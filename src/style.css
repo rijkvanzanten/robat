@@ -357,12 +357,3 @@ svg:hover #eye_right,
 svg:focus #eye_right {
   transform: scaleY(0.5);
 }
-
-/* Timestamp styling */
-.timestamp {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 0.8em;
-  opacity: 0.5;
-  margin-top: 1em;
-}

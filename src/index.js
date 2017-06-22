@@ -2,8 +2,6 @@
 const shortid = require('shortid');
 const localforage = require('localforage');
 
-var months = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'November', 'December'];
-
 let messageList = [];
 const chatWindow = document.querySelector('ul');
 
@@ -14,8 +12,7 @@ function init(err, data) {
     messageList = data.messageList;
     data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
   }
-
-  addTimeStamp();
+  
   const socket = io.connect();
 
   // Check for online and offline events
@@ -121,14 +118,6 @@ function init(err, data) {
         </li>
       `;
     }
-  }
-
-  function addTimeStamp() {
-    const date = new Date();
-    const day = date.getDay();
-    const month = months[ date.getMonth() ];
-    const year = date.getFullYear() ;
-    chatWindow.innerHTML += `<div class="timestamp">${day} ${month} ${year}</div>`;
   }
 
   /**
