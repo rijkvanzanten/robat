@@ -2,7 +2,6 @@
 const shortid = require('shortid');
 const localforage = require('localforage');
 
-var days = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'];
 var months = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'November', 'December'];
 
 let messageList = [];
@@ -126,9 +125,10 @@ function init(err, data) {
 
   function addTimeStamp() {
     const date = new Date();
-    const day = date.getDate();
-    const week = date.getWeek()
-    chatWindow.innerHTML += `<div class="timestamp">${day}</div>`;
+    const day = date.getDay();
+    const month = months[ date.getMonth() ];
+    const year = date.getFullYear() ;
+    chatWindow.innerHTML += `<div class="timestamp">${day} ${month} ${year}</div>`;
   }
 
   /**
