@@ -8,7 +8,7 @@
     "lint:js": "eslint . --ext .js --ignore-pattern '/build/*'  --cache",
     "lint:css": "stylelint src/style.css",
     "build:js": "browserify src/index.js -t [ babelify --presets [ es2015 ] ] -p bundle-collapser/plugin | esmangle > build/index.js && echo 'JS Built'",
-    "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json src/index.js > build/index.js -v'",
+    "watch:js": "chokidar 'src/index.js' -c 'browserifyinc --cachefile browserify-cache.json -t [ babelify --presets [ es2015 ] ] src/index.js > build/index.js -v'",
     "build:css": "postcss src/style.css --use cssnano > build/style.css",
     "watch:css": "chokidar 'src/style.css' -c 'npm run build:css -s'",
     "watch": "concurrently --prefix '[{name}]' --prefix-colors 'yellow,cyan' --names 'JS,CSS' 'npm run watch:js -s' 'npm run watch:css -s'",
