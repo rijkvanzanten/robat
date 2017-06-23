@@ -40,6 +40,8 @@ function init(error, messages) {
  * @param  {Array} messages Saved messages
  */
 function initializeMessagesWindow(messages) {
+  updateStatus();
+
   const groupedMessages = groupMessagesByDate(messages);
 
   const dates = Object.keys(groupedMessages);
@@ -72,6 +74,7 @@ function initializeMessagesWindow(messages) {
 }
 
 function onReceiveMessageFromServer(message) {
+  updateStatus();
   saveMessage(message);
   messageToDOM(message);
 }
@@ -98,6 +101,7 @@ function saveMessage(message) {
  * @param  {Object} socket currently connected socket
  */
 function submitMessage(event, socket) {
+  updateStatus();
   const messageForm = document.querySelector('form');
   const value = messageForm.querySelector('input[name="message"]').value;
 
@@ -120,4 +124,17 @@ function submitMessage(event, socket) {
   }
 
   event.preventDefault();
+}
+
+/**
+ * Update the online indicator
+ */
+function updateStatus() {
+  // Select the indicator element
+  const indicator = document.querySelector('[data-tooltip]');
+  if(navigator.onLine) {
+    indicator.setAttribute('data-tooltip', 'online');
+  } else {
+    indicator.setAttribute('data-tooltip', 'offline');
+  }
 }
