@@ -2,7 +2,7 @@
 import shortid from 'shortid';
 import localForage from 'localForage';
 import {renderDateSection, renderMessage} from './render';
-import {groupMessagesByDate} from './utils';
+import {formatDate, groupMessagesByDate} from './utils';
 
 // Register service worker
 if ('serviceWorker' in navigator) {
@@ -35,17 +35,19 @@ const testMessages = [
   },
 ];
 
-function init(error, messages = []) {
+function init(error, messages) {
+  messages = messages || [];
   if (error) {
     console.error(error); // eslint-disable-line no-console
   }
 
   // Debug purposes only
-  messages = testMessages;
+  // messages = testMessages;
 
   // Sort messages by date
-  messages = messages.sort((a, b) => a.timestamp < b.timestamp ? -1 : 1);
+  messages = messages.sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1));
 
+  // Add message saved in localStorage to DOM
   addStoredMessagesToDom(messages);
 }
 
@@ -54,16 +56,23 @@ function addStoredMessagesToDom(messages) {
 
   const dates = Object.keys(groupedMessages);
 
-  const html = dates
+  let html = '';
+
+  if (dates.length > 0) {
+    html = dates
     .map(date =>
       renderDateSection(
         date,
         groupedMessages[date]
           .map(message => renderMessage(message, true))
-          .reduce((html, str) => html += str)
+          .reduce((html, str) => (html += str))
       )
     )
-    .reduce((html, str) => html += str);
+    .reduce((html, str) => (html += str));
+  } else { // Add default 'today' list section when localStorage is empty
+    const today = formatDate(new Date());
+    html = renderDateSection(today);
+  }
 
   const chatWindow = document.getElementById('messages');
 
