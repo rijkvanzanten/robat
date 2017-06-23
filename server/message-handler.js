@@ -15,7 +15,11 @@ module.exports = function(io) {
     ];
 
     // Generate a random number based on the length of the array
-    const introMessage = introMessages[Math.floor(Math.random()*introMessages.length)];
+    const introMessage = {
+      value: introMessages[Math.floor(Math.random() * introMessages.length)],
+      id: -1,
+      timestamp: new Date(),
+    };
 
     socket.emit('message', introMessage );
 
