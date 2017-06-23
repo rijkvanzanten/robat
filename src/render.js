@@ -6,7 +6,7 @@ import {formatDate} from './utils';
  * @param  {String} children HTML
  * @return {String} HTML
  */
-export function renderDateSection(formattedDate, children) {
+export function renderDateSection(formattedDate, children = '') {
   const now = new Date();
   const today = formatDate(now);
   return `
