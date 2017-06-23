@@ -30,6 +30,9 @@ function init(error, messages) {
 
   // React to events from server
   socket.on('message', onReceiveMessageFromServer);
+
+  // Handle form submits
+  document.querySelector('form').addEventListener('submit', e => submitMessage(e, socket));
 }
 
 /**
@@ -87,4 +90,34 @@ function saveMessage(message) {
 
     localForage.setItem('messages', [...messages, message]);
   }
+}
+
+/**
+ * Submits form event value to the server over a socket
+ * @param  {Object} event form submit event
+ * @param  {Object} socket currently connected socket
+ */
+function submitMessage(event, socket) {
+  const messageForm = document.querySelector('form');
+  const value = messageForm.querySelector('input[name="message"]').value;
+
+  if (value.length > 0) {
+    const message = {
+      value,
+      id: shortid.generate(),
+      timestamp: new Date(),
+    };
+
+    // Send message to the server
+    socket.emit('message', message);
+
+    messageToDOM(message);
+
+    saveMessage(message);
+
+    // Clear message form input
+    messageForm.querySelector('input[name="message"]').value = '';
+  }
+
+  event.preventDefault();
 }
