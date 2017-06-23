@@ -240,13 +240,13 @@ label {
 }
 
 /* Chat bubble styling */
-[data-user="user"]::after {
+article:not([data-id="-1"])::after {
   content: "✓";
   font-size: 0.5em;
   margin-left: 1em;
 }
 
-.received::after {
+article:not([data-id="-1"])[data-read=true]::after {
   content: "✓✓";
   color: #5ec5e8;
 }
