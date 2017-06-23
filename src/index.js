@@ -30,6 +30,7 @@ function init(error, messages) {
 
   // React to events from server
   socket.on('message', onReceiveMessageFromServer);
+  socket.on('messageReceived', addReceivedStatusToMessage);
 
   // Handle form submits
   document.querySelector('form').addEventListener('submit', e => submitMessage(e, socket));
@@ -150,4 +151,12 @@ function updateStatus() {
 function scrollMessages() {
   const chatWindow = document.getElementById('messages');
   chatWindow.parentNode.scrollTop = chatWindow.parentNode.scrollHeight;
+}
+
+/**
+ * Add received icon to specific message
+ * @param {String} id ID of message to add icon to
+ */
+function addReceivedStatusToMessage({id}) {
+  document.querySelector('[data-id="' + id + '"]').setAttribute('data-read', true);
 }
