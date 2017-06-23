@@ -81,6 +81,7 @@ function onReceiveMessageFromServer(message) {
   saveMessage(message);
   messageToDOM(message);
   scrollMessages();
+  hideLoader();
 }
 
 /**
@@ -159,4 +160,19 @@ function scrollMessages() {
  */
 function addReceivedStatusToMessage({id}) {
   document.querySelector('[data-id="' + id + '"]').setAttribute('data-read', true);
+  showLoader();
+}
+
+/**
+ * Hides the typing indicator
+ */
+function hideLoader() {
+  document.querySelector('#loader').classList.add('hide');
+}
+/**
+ * Show the typing indicator
+ */
+function showLoader() {
+  document.querySelector('#loader').classList.remove('hide');
+  scrollMessages();
 }
