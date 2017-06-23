@@ -12,7 +12,7 @@ function init(err, data) {
     messageList = data.messageList;
     data.messageList.forEach(message => renderMessage(message, message.id === 0, true));
   }
-  
+
   const socket = io.connect();
 
   // Check for online and offline events
