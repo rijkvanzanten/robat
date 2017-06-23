@@ -11,13 +11,17 @@ module.exports = function(io) {
     const introMessages = [
       'Hi, mijn naam is <strong>Robat</strong>! Wil je weten wat je me zoal kunt vragen? Typ dan <strong>help</strong>.',
       'Hallo, ik ben <strong>Robat</strong>. Door <strong>help</strong> te typen kan je zien wat je mij kan vragen!',
-      'Hoi, ik ben Robat! Weten wat je mij kan vragen? Typ dan <strong>help</strong.',
+      'Hoi, ik ben Robat! Weten wat je mij kan vragen? Typ dan <strong>help</strong>.',
     ];
 
     // Generate a random number based on the length of the array
-    const introMessage = introMessages[Math.floor(Math.random()*introMessages.length)];
+    const introMessage = {
+      value: introMessages[Math.floor(Math.random() * introMessages.length)],
+      id: -1,
+      timestamp: new Date(),
+    };
 
-    socket.emit('message', introMessage );
+    socket.emit('message', introMessage);
 
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
   });
@@ -30,7 +34,12 @@ module.exports = function(io) {
       // Retrieve socketId of user whose session belongs to
       const recipientId = sessions[sessionId].socketId;
       if (recipientId) {
-        io.to(recipientId).emit('message', text);
+        const message = {
+          value: text,
+          id: -1,
+          timestamp: new Date(),
+        };
+        io.to(recipientId).emit('message', message);
       } else {
         console.error('Session not found: ' + sessionId); // eslint-disable-line no-console
       }
