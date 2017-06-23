@@ -77,7 +77,7 @@ header img {
   -webkit-overflow-scrolling: touch;
 }
 
-.chat-wrapper ul {
+.chat-wrapper ol {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -85,7 +85,27 @@ header img {
   padding: 0.5em;
 }
 
-li {
+ol > li {
+  display: flex;
+  flex-direction: column;
+}
+
+ol time {
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  margin: 2em auto 0;
+  display: block;
+  width: 200px;
+  width: -webkit-max-content;
+  width: max-content;
+  text-shadow: 0 1px #000;
+  opacity: 0.5;
+}
+
+ol > li article {
   padding: 1em;
   background-color: white;
   margin: 1em 0;
@@ -94,15 +114,16 @@ li {
   border-radius: 6px;
 }
 
-li:first-child {
+article:first-child {
   margin-top: auto;
 }
 
-[data-user=user] {
+article:not([data-id="-1"]) {
   align-self: flex-end;
   background-color: #dcf8c6;
 }
 
+/* This should be re-implemented and checked when displayResults is back
 li ul {
   list-style: none;
   padding: 0;
@@ -147,6 +168,7 @@ li img {
   width: 30%;
   height: 100%;
 }
+*/
 
 form {
   display: flex;
@@ -239,6 +261,7 @@ label {
   border-radius: 6px;
   order: 15;
   flex-shrink: 0;
+  margin: 0.5em;
 }
 
 #loader.hide {
