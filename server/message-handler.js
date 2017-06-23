@@ -11,7 +11,7 @@ module.exports = function(io) {
     const introMessages = [
       'Hi, mijn naam is <strong>Robat</strong>! Wil je weten wat je me zoal kunt vragen? Typ dan <strong>help</strong>.',
       'Hallo, ik ben <strong>Robat</strong>. Door <strong>help</strong> te typen kan je zien wat je mij kan vragen!',
-      'Hoi, ik ben Robat! Weten wat je mij kan vragen? Typ dan <strong>help</strong.',
+      'Hoi, ik ben Robat! Weten wat je mij kan vragen? Typ dan <strong>help</strong>.',
     ];
 
     // Generate a random number based on the length of the array
