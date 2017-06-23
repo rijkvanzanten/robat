@@ -357,3 +357,7 @@ svg:hover #eye_right,
 svg:focus #eye_right {
   transform: scaleY(0.5);
 }
+
+strong {
+  color: #bf1510;
+}

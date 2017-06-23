@@ -3,9 +3,21 @@ const {Wit, log} = require('node-wit');
 const {actions: customActions} = require('./actions');
 
 module.exports = function(io) {
+
   // Listen for incoming messages
   io.on('connection', socket => {
-    socket.emit('message', 'Hallo ik ben Robat! Leuk dat je er bent :-)');
+
+    // Array for different intro messages
+    const introMessages = [
+      'Hi, mijn naam is <strong>Robat</strong>! Wil je weten wat je me zoal kunt vragen? Typ dan <strong>help</strong>.',
+      'Hallo, ik ben <strong>Robat</strong>. Door <strong>help</strong> te typen kan je zien wat je mij kan vragen!',
+      'Hoi, ik ben Robat! Weten wat je mij kan vragen? Typ dan <strong>help</strong.',
+    ];
+
+    // Generate a random number based on the length of the array
+    const introMessage = introMessages[Math.floor(Math.random()*introMessages.length)];
+
+    socket.emit('message', introMessage );
 
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
   });
