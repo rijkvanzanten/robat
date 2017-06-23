@@ -21,7 +21,7 @@ module.exports = function(io) {
       timestamp: new Date(),
     };
 
-    socket.emit('message', introMessage );
+    socket.emit('message', introMessage);
 
     socket.on('message', msg => handleIncomingMessage(msg, socket.id));
   });
@@ -34,7 +34,12 @@ module.exports = function(io) {
       // Retrieve socketId of user whose session belongs to
       const recipientId = sessions[sessionId].socketId;
       if (recipientId) {
-        io.to(recipientId).emit('message', text);
+        const message = {
+          value: text,
+          id: -1,
+          timestamp: new Date(),
+        };
+        io.to(recipientId).emit('message', message);
       } else {
         console.error('Session not found: ' + sessionId); // eslint-disable-line no-console
       }
