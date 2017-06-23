@@ -12,37 +12,12 @@ if ('serviceWorker' in navigator) {
 
 localForage.getItem('messages', init);
 
-const testMessages = [
-  {
-    value: 'Hallo ik ben Robat!',
-    id: -1,
-    timestamp: new Date(2017, 3, 22),
-  },
-  {
-    value: 'Hallo ik niet!',
-    id: -1,
-    timestamp: new Date(2017, 4, 23),
-  },
-  {
-    value: 'Hallo ik niet!',
-    id: -1,
-    timestamp: new Date(2017, 4, 23),
-  },
-  {
-    value: 'Hallo ik ben Robat!',
-    id: -1,
-    timestamp: new Date(2017, 5, 22),
-  },
-];
-
 function init(error, messages) {
   messages = messages || [];
+
   if (error) {
     console.error(error); // eslint-disable-line no-console
   }
-
-  // Debug purposes only
-  messages = testMessages;
 
   // Sort messages by date
   messages = messages.sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1));
@@ -94,5 +69,22 @@ function initializeMessagesWindow(messages) {
 }
 
 function onReceiveMessageFromServer(message) {
+  saveMessage(message);
   messageToDOM(message);
+}
+
+/**
+ * Saves message to localStorage messages array
+ * @param  {Object} message The message to save
+ */
+function saveMessage(message) {
+  localForage.getItem('messages', onMessagesLoaded);
+  function onMessagesLoaded(error, messages) {
+    messages = messages || [];
+    if (error) {
+      console.error(error); // eslint-disable-line no-console
+    }
+
+    localForage.setItem('messages', [...messages, message]);
+  }
 }
