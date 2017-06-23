@@ -71,12 +71,15 @@ function initializeMessagesWindow(messages) {
   const chatWindow = document.getElementById('messages');
 
   chatWindow.innerHTML = html;
+
+  scrollMessages();
 }
 
 function onReceiveMessageFromServer(message) {
   updateStatus();
   saveMessage(message);
   messageToDOM(message);
+  scrollMessages();
 }
 
 /**
@@ -119,6 +122,8 @@ function submitMessage(event, socket) {
 
     saveMessage(message);
 
+    scrollMessages();
+
     // Clear message form input
     messageForm.querySelector('input[name="message"]').value = '';
   }
@@ -137,4 +142,12 @@ function updateStatus() {
   } else {
     indicator.setAttribute('data-tooltip', 'offline');
   }
+}
+
+/**
+ * Scrolls the message window to the last item
+ */
+function scrollMessages() {
+  const chatWindow = document.getElementById('messages');
+  chatWindow.parentNode.scrollTop = chatWindow.parentNode.scrollHeight;
 }
