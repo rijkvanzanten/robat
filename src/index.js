@@ -1,6 +1,6 @@
 /* global io */
 import shortid from 'shortid';
-import localForage from 'localForage';
+import localForage from 'localforage';
 import {renderDateSection, renderMessage, messageToDOM} from './render';
 import {formatDate, groupMessagesByDate} from './utils';
 
