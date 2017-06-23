@@ -16,7 +16,7 @@ const testMessages = [
   {
     value: 'Hallo ik ben Robat!',
     id: -1,
-    timestamp: new Date(),
+    timestamp: new Date(2017, 3, 22),
   },
   {
     value: 'Hallo ik niet!',
@@ -42,7 +42,7 @@ function init(error, messages) {
   }
 
   // Debug purposes only
-  // messages = testMessages;
+  messages = testMessages;
 
   // Sort messages by date
   messages = messages.sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1));
@@ -55,7 +55,7 @@ function addStoredMessagesToDom(messages) {
   const groupedMessages = groupMessagesByDate(messages);
 
   const dates = Object.keys(groupedMessages);
-
+  const today = formatDate(new Date());
   let html = '';
 
   if (dates.length > 0) {
@@ -69,8 +69,12 @@ function addStoredMessagesToDom(messages) {
       )
     )
     .reduce((html, str) => (html += str));
+
+    // Add today section if last saved date section isn't today
+    if (dates[dates.length - 1] !== today) {
+      html += renderDateSection(today);
+    }
   } else { // Add default 'today' list section when localStorage is empty
-    const today = formatDate(new Date());
     html = renderDateSection(today);
   }
 
