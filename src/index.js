@@ -1,7 +1,7 @@
 /* global io */
 import shortid from 'shortid';
 import localForage from 'localForage';
-import {renderDateSection, renderMessage} from './render';
+import {renderDateSection, renderMessage, messageToDOM} from './render';
 import {formatDate, groupMessagesByDate} from './utils';
 
 // Register service worker
@@ -48,10 +48,20 @@ function init(error, messages) {
   messages = messages.sort((a, b) => (a.timestamp < b.timestamp ? -1 : 1));
 
   // Add message saved in localStorage to DOM
-  addStoredMessagesToDom(messages);
+  initializeMessagesWindow(messages);
+
+  // Connect to server via socket
+  const socket = io.connect();
+
+  // React to events from server
+  socket.on('message', onReceiveMessageFromServer);
 }
 
-function addStoredMessagesToDom(messages) {
+/**
+ * Initializes the messages window with date grouped messages
+ * @param  {Array} messages Saved messages
+ */
+function initializeMessagesWindow(messages) {
   const groupedMessages = groupMessagesByDate(messages);
 
   const dates = Object.keys(groupedMessages);
@@ -81,4 +91,8 @@ function addStoredMessagesToDom(messages) {
   const chatWindow = document.getElementById('messages');
 
   chatWindow.innerHTML = html;
+}
+
+function onReceiveMessageFromServer(message) {
+  messageToDOM(message);
 }

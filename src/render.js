@@ -27,3 +27,13 @@ export function renderMessage(message, read = false) {
   const {id, value} = message;
   return `<article data-id=${id} data-read=${read}>${value}</article>`;
 }
+
+/**
+ * Render a single message to the DOM
+ * @param  {Object} message The message to render
+ * @return {[type]} [description]
+ */
+export function messageToDOM(message) {
+  const chatField = document.querySelector('#messages li:last-of-type');
+  chatField.innerHTML += renderMessage(message);
+}
