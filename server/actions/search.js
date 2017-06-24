@@ -30,11 +30,20 @@ function search({context, entities}) {
 
   if (year) {
     if (parameters.facet) {
-      parameters.facet.push(`pubYear(${language})`);
+      parameters.facet.push(`pubYear(${year})`);
     } else {
-      parameters.facet = [`pubYear(${language})`];
+      parameters.facet = [`pubYear(${year})`];
     }
   }
+
+  if (author) {
+    if (parameters.q) {
+      parameters.q += `${author} `;
+    } else {
+      parameters.q = `${author} `;
+    }
+  }
+
 
   return OBAClient.get('search', parameters
   )
