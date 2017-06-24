@@ -31,6 +31,9 @@ function init(error, messages) {
   // React to events from server
   socket.on('message', onReceiveMessageFromServer);
   socket.on('messageReceived', addReceivedStatusToMessage);
+  socket.on('displayResults', function(results) {
+    console.log(results);
+  });
 
   // Handle form submits
   document.querySelector('form').addEventListener('submit', e => submitMessage(e, socket));
