@@ -44,18 +44,28 @@ function search({context, entities}) {
     }
   }
 
+  if (searchQuery) {
+    if (parameters.q) {
+      parameters.q += `${searchQuery} `;
+    } else {
+      parameters.q = `${searchQuery} `;
+    }
+  }
 
-  return OBAClient.get('search', parameters
-  )
+  console.log(parameters);
+
+  return OBAClient.get('search', parameters)
     .then(res => JSON.parse(res))
     .then(res => {
       const count = res.aquabrowser.meta.count;
 
       if (count > 0) {
-        context.title = res.aquabrowser.results.result.titles['short-title'];
+        context.results = res.aquabrowser.results;
       } else {
         context.notFound = true;
       }
+
+      console.log(context);
 
       return context;
 
