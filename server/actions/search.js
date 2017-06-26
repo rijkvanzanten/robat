@@ -10,7 +10,9 @@ function search({context, entities}) {
   const language = firstEntityValue(entities, 'language');
   const year = firstEntityValue(entities, 'year');
   const searchQuery = firstEntityValue(entities, 'search_query');
-  const parameters = {};
+  const parameters = {
+    ps: 5,
+  };
 
   if (type) {
     if (parameters.facet) {
