@@ -31,9 +31,7 @@ function init(error, messages) {
   // React to events from server
   socket.on('message', onReceiveMessageFromServer);
   socket.on('messageReceived', addReceivedStatusToMessage);
-  socket.on('displayResults', function(results) {
-    console.log(results);
-  });
+  socket.on('displayResults', displayResults);
 
   // Handle form submits
   document.querySelector('form').addEventListener('submit', e => submitMessage(e, socket));
@@ -178,4 +176,26 @@ function hideLoader() {
 function showLoader() {
   document.querySelector('#loader').classList.remove('hide');
   scrollMessages();
+}
+
+/**
+ * render search results to dom
+ * @param  {Array} results objects from the search query
+ */
+function displayResults(results) {
+  const cleanResults = results.map(function(currentValue) {
+    const authors = currentValue.authors.author || currentValue.authors['main-author'];
+
+    return {
+      link: currentValue['detail-page'],
+      image: currentValue.coverimages.coverimage[0],
+      title: currentValue.titles['short-title'],
+      author:
+        Array.isArray(authors) ?
+        authors
+          .map(val => val['search-term'])
+          .reduce((acc, val) => acc += ' & ' + val) :
+        authors['search-term']
+    }
+  });
 }
