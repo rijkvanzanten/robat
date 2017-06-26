@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
+const compression = require('compression');
 
 const attachMessageHandler = require('./message-handler');
 
@@ -29,6 +30,7 @@ if (
 }
 
 const app = express()
+  .use(compression({filter: () => true}))
   .set('view engine', 'ejs')
   .use(express.static(path.join(__dirname, '..', 'static'), {maxAge: '31d'}))
   .use(express.static(path.join(__dirname, '..', 'build'), {maxAge: '31d'}))
@@ -46,4 +48,3 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log('🤖  Robat is listening at port '+ port); // eslint-disable-line no-console
 });
-
