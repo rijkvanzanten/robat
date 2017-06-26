@@ -31,7 +31,8 @@ function findLocation({context, entities}) {
                 if (Object.keys(res).length > 0) {
                   const {name, email, telephone, photo, description, address} = res;
 
-                  const openingHours = res.openingHours.reduce((str, val) => (str += '<br>' + val));
+                  const openingHours = '<br>' + res.openingHours.reduce((str, val) => (str += '<br>' + val));
+
                   const {streetAddress, postalCode, addressLocality} = address;
                   Object.assign(context, {name, email, telephone, openingHours, photo, description, streetAddress, postalCode, addressLocality});
                   return context;
