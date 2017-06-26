@@ -110,6 +110,8 @@ ol > li article {
   background-color: white;
   margin: 1em 0;
   width: 67%;
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
   max-width: max-content;
   box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
   border-radius: 6px;
