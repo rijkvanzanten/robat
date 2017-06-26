@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
   <head>
-    <%- include ./partials/meta -%>
     <title>Robat chat</title>
-    <link rel="preload" as="style" href="/style.css" onload="this.rel=stylesheet">
 		<link rel="preload" as="script" href="/socket.io/socket.io.js">
 		<link rel="preload" as="script" href="/index.js">
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=6.0" charset="utf-8">
@@ -18,6 +16,8 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 		<meta name="apple-mobile-web-app-title" content="Robat">
+
+    <link rel="stylesheet" href="/style.css">
     <script type="text/javascript" src="/socket.io/socket.io.js" defer></script>
     <script src="/index.js" defer></script>
   </head>
