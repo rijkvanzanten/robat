@@ -184,20 +184,27 @@ function showLoader() {
  */
 function displayResults(results) {
 
+  console.log(results);
+
   // Step 1: clean the api results
   const cleanResults = results.map(function(currentValue) {
-    const authors = currentValue.authors.author || currentValue.authors['main-author'];
 
-    return {
-      link: currentValue['detail-page'],
-      image: currentValue.coverimages.coverimage[0],
-      title: currentValue.titles['short-title'],
-      author:
-        Array.isArray(authors) ?
+    let author = '';
+
+    if (currentValue.authors) {
+      const authors = currentValue.authors.author || currentValue.authors['main-author'];
+      author = Array.isArray(authors) ?
         authors
           .map(val => val['search-term'])
           .reduce((acc, val) => acc += ' & ' + val) :
-        authors['search-term'],
+        authors['search-term'];
+    }
+
+    return {
+      link: currentValue['detail-page'],
+      image: currentValue.coverimages.coverimage[1],
+      title: currentValue.titles['short-title'],
+      author: author,
     };
   });
 
