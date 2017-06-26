@@ -183,6 +183,8 @@ function showLoader() {
  * @param  {Array} results objects from the search query
  */
 function displayResults(results) {
+
+  // Step 1: clean the api results
   const cleanResults = results.map(function(currentValue) {
     const authors = currentValue.authors.author || currentValue.authors['main-author'];
 
@@ -198,4 +200,29 @@ function displayResults(results) {
         authors['search-term']
     }
   });
+
+  // Step 2: create HTML String
+  const htmlString =
+    '<ol class="results">' +
+      cleanResults
+        .map(function (currentValue) {
+          return `
+            <li>
+              <a href="${currentValue.link}">
+                <img src="${currentValue.image}" alt="${currentValue.title}">
+                <h2>${currentValue.title}</h2>
+                <h3>${currentValue.author}</h3>
+              </a>
+            </li>
+          `;
+        })
+        .reduce(function (acc, currentValue) {
+          return acc + currentValue;
+        }) +
+    '</ol>';
+
+  // Step 3: Insert HTML string into DOM
+  const chatField = document.querySelector('#messages li:last-of-type');
+  chatField.innerHTML += htmlString;
+  scrollMessages();
 }
