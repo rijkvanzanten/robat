@@ -221,8 +221,18 @@ function displayResults(results) {
         }) +
     '</ol>';
 
+  const message = {
+    id: -1,
+    value: htmlString,
+    timestamp: new Date(),
+  };
+
+  console.log(message);
+
   // Step 3: Insert HTML string into DOM
-  const chatField = document.querySelector('#messages li:last-of-type');
-  chatField.innerHTML += htmlString;
+  // const chatField = document.querySelector('#messages li:last-of-type');
+  // chatField.innerHTML += htmlString;
+  saveMessage(message);
+  messageToDOM(message);
   scrollMessages();
 }
