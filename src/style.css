@@ -139,6 +139,7 @@ article:not([data-id="-1"]) {
 
 .results a {
   display: flex;
+  justify-content: space-between;
   border-radius: 4px;
   max-width: 100%;
   padding: 0.5em;
@@ -163,8 +164,6 @@ article:not([data-id="-1"]) {
 }
 
 .results img {
-  width: 30%;
-  height: 100%;
   align-self: center;
 }
 
