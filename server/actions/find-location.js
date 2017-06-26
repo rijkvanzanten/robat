@@ -38,7 +38,7 @@ function findLocation({context, entities}) {
                   return context;
                 }
               })
-              .catch(err => console.log(err));
+              .catch(err => console.log(err)); // eslint-disable-line no-console
           }
 
         } else {
@@ -46,7 +46,7 @@ function findLocation({context, entities}) {
           return context;
         }
       })
-      .catch(err => console.log(err)); // eslint-disable-line no-console;
+      .catch(err => console.log(err)); // eslint-disable-line no-console
   } else {
     context.missingLocation = true;
     return context;

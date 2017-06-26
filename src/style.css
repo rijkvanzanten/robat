@@ -123,7 +123,6 @@ article:not([data-id="-1"]) {
   background-color: #dcf8c6;
 }
 
- /*This should be re-implemented and checked when displayResults is back*/
 .results {
   list-style: none;
   padding: 0;
@@ -154,7 +153,7 @@ article:not([data-id="-1"]) {
   font-size: inherit;
 }
 
-.results  h3 {
+.results h3 {
   font-size: inherit;
   font-weight: 100;
   color: #bf1510;
@@ -164,8 +163,6 @@ article:not([data-id="-1"]) {
   width: 30%;
   height: 100%;
 }
-
-/* END */
 
 form {
   display: flex;

@@ -65,8 +65,6 @@ function search({context, entities}) {
     }
   }
 
-  console.log(parameters);
-
   return OBAClient.get('search', parameters)
     .then(res => JSON.parse(res))
     .then(res => {
@@ -77,8 +75,6 @@ function search({context, entities}) {
       } else {
         context.notFound = true;
       }
-
-      console.log(context);
 
       return context;
 

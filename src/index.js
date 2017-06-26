@@ -197,8 +197,8 @@ function displayResults(results) {
         authors
           .map(val => val['search-term'])
           .reduce((acc, val) => acc += ' & ' + val) :
-        authors['search-term']
-    }
+        authors['search-term'],
+    };
   });
 
   // Step 2: create HTML String
@@ -228,8 +228,6 @@ function displayResults(results) {
     value: htmlString,
     timestamp: new Date(),
   };
-
-  console.log(message);
 
   // Step 3: Insert HTML string into DOM
   // const chatField = document.querySelector('#messages li:last-of-type');
