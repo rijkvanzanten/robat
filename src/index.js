@@ -209,9 +209,11 @@ function displayResults(results) {
           return `
             <li>
               <a href="${currentValue.link}">
+                <div>
+                  <h2>${currentValue.title}</h2>
+                  <h3>${currentValue.author}</h3>
+                </div>
                 <img src="${currentValue.image}" alt="${currentValue.title}">
-                <h2>${currentValue.title}</h2>
-                <h3>${currentValue.author}</h3>
               </a>
             </li>
           `;
