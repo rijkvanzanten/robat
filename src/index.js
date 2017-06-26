@@ -1,5 +1,5 @@
-/* global io */
 import shortid from 'shortid';
+import io from 'socket.io-client';
 import localForage from 'localforage';
 import {renderDateSection, renderMessage, messageToDOM} from './render';
 import {formatDate, groupMessagesByDate} from './utils';
