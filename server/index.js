@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const socketIO = require('socket.io');
 const express = require('express');
+const compression = require('compression');
 
 const attachMessageHandler = require('./message-handler');
 
@@ -32,7 +33,8 @@ const app = express()
   .set('view engine', 'ejs')
   .use(express.static(path.join(__dirname, '..', 'static'), {maxAge: '31d'}))
   .use(express.static(path.join(__dirname, '..', 'build'), {maxAge: '31d'}))
-  .get('*', (req, res) => res.render('index'));
+  .get('*', (req, res) => res.render('index'))
+  .use(compression({treshold: 0, filter: () => true}));
 
 // Start server on provided port or other 3000
 const server = http.createServer(app);
