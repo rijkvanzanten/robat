@@ -31,13 +31,14 @@ function findLocation({context, entities}) {
                 if (Object.keys(res).length > 0) {
                   const {name, email, telephone, photo, description, address} = res;
 
-                  const openingHours = res.openingHours.reduce((str, val) => (str += '<br>' + val));
+                  const openingHours = '<br>' + res.openingHours.reduce((str, val) => (str += '<br>' + val));
+
                   const {streetAddress, postalCode, addressLocality} = address;
                   Object.assign(context, {name, email, telephone, openingHours, photo, description, streetAddress, postalCode, addressLocality});
                   return context;
                 }
               })
-              .catch(err => console.log(err));
+              .catch(err => console.log(err)); // eslint-disable-line no-console
           }
 
         } else {
@@ -45,7 +46,7 @@ function findLocation({context, entities}) {
           return context;
         }
       })
-      .catch(err => console.log(err)); // eslint-disable-line no-console;
+      .catch(err => console.log(err)); // eslint-disable-line no-console
   } else {
     context.missingLocation = true;
     return context;

@@ -47,6 +47,22 @@ module.exports = function(io) {
       // Let the bot know we're done
       return Promise.resolve();
     },
+
+    displayResults({sessionId, context}) {
+      // Retrieve socketId of user whose session belongs to
+      const recipientId = sessions[sessionId].socketId;
+      if (recipientId) {
+        const results = context.results.result;
+
+        io.to(recipientId).emit('displayResults', results);
+      } else {
+        console.error('Session not found: ' + sessionId); // eslint-disable-line no-console
+      }
+
+      // Let the bot know we're done
+      return Promise.resolve();
+    },
+
     stop({sessionId}) {
       delete sessions[sessionId];
       return {}; // send empty context (reset)

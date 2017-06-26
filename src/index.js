@@ -31,6 +31,7 @@ function init(error, messages) {
   // React to events from server
   socket.on('message', onReceiveMessageFromServer);
   socket.on('messageReceived', addReceivedStatusToMessage);
+  socket.on('displayResults', displayResults);
 
   // Handle form submits
   document.querySelector('form').addEventListener('submit', e => submitMessage(e, socket));
@@ -174,5 +175,64 @@ function hideLoader() {
  */
 function showLoader() {
   document.querySelector('#loader').classList.remove('hide');
+  scrollMessages();
+}
+
+/**
+ * render search results to dom
+ * @param  {Array} results objects from the search query
+ */
+function displayResults(results) {
+
+  // Step 1: clean the api results
+  const cleanResults = results.map(function(currentValue) {
+    const authors = currentValue.authors.author || currentValue.authors['main-author'];
+
+    return {
+      link: currentValue['detail-page'],
+      image: currentValue.coverimages.coverimage[0],
+      title: currentValue.titles['short-title'],
+      author:
+        Array.isArray(authors) ?
+        authors
+          .map(val => val['search-term'])
+          .reduce((acc, val) => acc += ' & ' + val) :
+        authors['search-term'],
+    };
+  });
+
+  // Step 2: create HTML String
+  const htmlString =
+    '<ol class="results">' +
+      cleanResults
+        .map(function (currentValue) {
+          return `
+            <li>
+              <a href="${currentValue.link}">
+                <div>
+                  <h2>${currentValue.title}</h2>
+                  <h3>${currentValue.author}</h3>
+                </div>
+                <img src="${currentValue.image}" alt="${currentValue.title}">
+              </a>
+            </li>
+          `;
+        })
+        .reduce(function (acc, currentValue) {
+          return acc + currentValue;
+        }) +
+    '</ol>';
+
+  const message = {
+    id: -1,
+    value: htmlString,
+    timestamp: new Date(),
+  };
+
+  // Step 3: Insert HTML string into DOM
+  // const chatField = document.querySelector('#messages li:last-of-type');
+  // chatField.innerHTML += htmlString;
+  saveMessage(message);
+  messageToDOM(message);
   scrollMessages();
 }
