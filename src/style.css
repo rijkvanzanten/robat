@@ -70,6 +70,7 @@ header img {
 
 .chat-wrapper {
   position: relative;
+  background-color: #f9fafb;
   background-image: url('/img/bg.png');
   width: 100%;
   height: calc(100% - 80px - 70px);
