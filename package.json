@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/rijkvanzanten/robat#readme",
   "dependencies": {
+    "compression": "^1.6.2",
     "dotenv": "^4.0.0",
     "ejs": "^2.5.6",
     "express": "^4.15.3",

@@ -46,4 +46,3 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log('🤖  Robat is listening at port '+ port); // eslint-disable-line no-console
 });
-
