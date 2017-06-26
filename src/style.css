@@ -123,52 +123,49 @@ article:not([data-id="-1"]) {
   background-color: #dcf8c6;
 }
 
-/* This should be re-implemented and checked when displayResults is back
-li ul {
+ /*This should be re-implemented and checked when displayResults is back*/
+.results {
   list-style: none;
   padding: 0;
   padding-top: 0.5em;
 }
 
-li button {
-  margin-top: 1rem;
+.results li {
+  margin-top: 0.7rem;
   flex-grow: 1;
-  border: 1px solid #efefef;
-  border-radius: 4px;
-  padding: 0.5em;
-  background-color: white;
-  font-size: inherit;
-  color: #60b0e8;
-  width: 100%;
 }
 
-li ul li {
+.results a {
   display: flex;
+  border-radius: 4px;
   max-width: 100%;
   padding: 0.5em;
   border: 1px solid #efefef;
+  text-decoration: none;
 }
 
-li div {
+.results div {
   width: 70%;
   align-self: center;
   padding: 0.5em;
 }
 
-li div h2 {
+.results h2 {
   font-size: inherit;
 }
 
-li div h3 {
+.results  h3 {
   font-size: inherit;
   font-weight: 100;
+  color: #bf1510;
 }
 
-li img {
+.results img {
   width: 30%;
   height: 100%;
 }
-*/
+
+/* END */
 
 form {
   display: flex;
