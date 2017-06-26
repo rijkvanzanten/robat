@@ -30,11 +30,11 @@ if (
 }
 
 const app = express()
+  .use(compression({filter: () => true}))
   .set('view engine', 'ejs')
   .use(express.static(path.join(__dirname, '..', 'static'), {maxAge: '31d'}))
   .use(express.static(path.join(__dirname, '..', 'build'), {maxAge: '31d'}))
-  .get('*', (req, res) => res.render('index'))
-  .use(compression({treshold: 0, filter: () => true}));
+  .get('*', (req, res) => res.render('index'));
 
 // Start server on provided port or other 3000
 const server = http.createServer(app);
