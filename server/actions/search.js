@@ -6,7 +6,10 @@ actions.register('search', search);
 
 function search({context, entities}) {
   const type = firstEntityValue(entities, 'type');
+
   const author = firstEntityValue(entities, 'author');
+  const contact = firstEntityValue(entities, 'contact');
+
   const language = firstEntityValue(entities, 'language');
   const year = firstEntityValue(entities, 'year');
   const searchQuery = firstEntityValue(entities, 'search_query');
@@ -43,6 +46,14 @@ function search({context, entities}) {
       parameters.q += `${author} `;
     } else {
       parameters.q = `${author} `;
+    }
+  }
+
+  if (contact) {
+    if (parameters.q) {
+      parameters.q += `${contact} `;
+    } else {
+      parameters.q = `${contact} `;
     }
   }
 
