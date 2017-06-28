@@ -41,7 +41,7 @@ To view a full in-depth report of this project you can view the [GitBook](https:
 * Make sure you have [`node`](https://nodejs.org/en/) installed on your machine.
 
 ### Installation
-1. Clone this repo
+2. Clone this repo
 ```bash
 $ https://github.com/rijkvanzanten/robat.git
 ```
@@ -64,6 +64,12 @@ OBA_SECRET=1234567890
 
 ## :white_check_mark: Todo's /  :sparkles: Wishlist
 To see all upcoming todo's and features please navigate to the [issues](https://github.com/rijkvanzanten/robat/issues) page of this repo.
+
+- [x] Add send/read indicators (like WhatsApp)
+- [x] Show dates send/received
+- [x] Show online / offline indicator
+- [ ] Support whole [OBA FAQ](https://www.oba.nl/oba/english/frequently-asked-questions.html) in conversation
+- [ ] Multilingual support
 
 ## :page_facing_up: Contributing
 Please read [Contributing](CONTRIBUTING.md) for details on how to contribute to this project.
