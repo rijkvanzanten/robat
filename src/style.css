@@ -168,8 +168,8 @@ article:not([data-id="-1"]) {
 .results img {
   align-self: center;
   object-fit: cover;
-  height: 100%;
-  width: 30%;
+  max-height: 120px;
+  width: auto;
 }
 
 form {
