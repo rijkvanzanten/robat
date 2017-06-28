@@ -41,12 +41,12 @@ To view a full in-depth report of this project you can view the [GitBook](https:
 * Make sure you have [`node`](https://nodejs.org/en/) installed on your machine.
 
 ### Installation
-2. Clone this repo
+1. Clone this repo
 ```bash
 $ https://github.com/rijkvanzanten/robat.git
 ```
 
-1. Run `npm install` to install all dependencies.
+2. Run `npm install` to install all dependencies.
 
 *After the installation, the application should automagically build the client-side assets. If this for some reason failed run `npm run build`.*
 
