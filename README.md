@@ -68,13 +68,15 @@ To see all upcoming todo's and features please navigate to the [issues](https://
 - [x] Add send/read indicators (like WhatsApp)
 - [x] Show dates send/received
 - [x] Show online / offline indicator
-- [ ] Search for activities within the oba 
+- [ ] Search for activities within the oba
 - [ ] Support whole [OBA FAQ](https://www.oba.nl/oba/english/frequently-asked-questions.html) in conversation
 - [ ] Multilingual support
 
 ## :page_facing_up: Contributing
 Please read [Contributing](CONTRIBUTING.md) for details on how to contribute to this project.
 To see a list of everybody who participated go to the [Contributors](https://github.com/rijkvanzanten/robat/graphs/contributors) page.
+
+When you do, please also view the [Code of Conduct](CODE_OF_CONDUCT.md) for this project.
 
 ## Core Team
 ![Rijk van Zanten](https://avatars0.githubusercontent.com/u/9141017?v=3&s=460) | ![Giulia Meerman](https://avatars0.githubusercontent.com/u/14131081?v=3&s=460) | ![Danny de Vries](https://avatars1.githubusercontent.com/u/22084444?v=3&s=460) | ![Mirza van Meerwijk](https://avatars2.githubusercontent.com/u/12242967?v=3&s=460) | ![Pierre Bleeker](https://avatars0.githubusercontent.com/u/12711649?v=3&s=460)
