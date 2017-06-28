@@ -12,36 +12,41 @@
 ![NPM](https://img.shields.io/npm/v/npm.svg)
 ![Robat](https://img.shields.io/badge/🤖-robat-E30111.svg)
 
-## Overview
-Robat is a chatbot which can help you with ~all~ ~most~ some of your questions regarding  [Amsterdam Public Library (OBA)](http://oba.nl).
 
-The chatbot only speaks Dutch at the moment.
+> Robat is a chatbot which can help you with ~all~ ~most~ some of your questions regarding  [Amsterdam Public Library (OBA)](http://oba.nl).
+
+## :book: Introduction
+Robat is a web-based chatbot which (from any device) can answer questions about the Amsterdam Public Library.
 
 Some questions you can ask/tell Robat:  
-- [x] Kan ik overstappen op een ander abonnement?
-- [x] Hoe kan ik materiaal verlengen?
-- [x] Wat is het nieuwste boek van Nikki French?
-- [x] Ik ben mijn pas kwijt
-- [x] Welke lidmaatschappen heeft de OBA?
-- [ ] Tot hoelaat is de Centrale OBA morgen open?
-- [ ] Wat kost een OBA Totaal abonnement?
+* Het wijzigen, aanvragen en de prijzen van een lidmaatschap.
+* Het verlengen van materiaal
+* Opvragen locaties van de OBA (inclusief google maps link)
+* Openingstijden van OBA locatie
+* Contactinformatie van een OBA locatie
+* Het kwijtraken van je pas
 
-## Tech Stack
+## ⚙️ Installation & Development
+
+### Tech Stack
 - HTML, CSS & JS
 - [Node.JS](http://nodejs.org) w/
   - [Express](https://expressjs.com) webserver
   - [Socket.io](http://socket.io) websocket connection
 - [Wit.ai](http://wit.ai) Natural Language Processor
 
-## Installation
-Clone this repo
+### Prerequisites
+* Make sure you have [`node`](https://nodejs.org/en/) installed on your machine.
+
+### Installation
+1. Clone this repo
 ```bash
 $ https://github.com/rijkvanzanten/robat.git
 ```
 
-and run `npm install` to install all dependencies.
+1. Run `npm install` to install all dependencies.
 
-After the installation, the application should automagically build the client-side assets. If this for some reason failed run `npm run build`.
+*After the installation, the application should automagically build the client-side assets. If this for some reason failed run `npm run build`.*
 
 You will need a `.env` file in the root of your project which contains a (server) Wit AI key and a public/secret keypair for the OBA API:
 ```
@@ -50,39 +55,17 @@ OBA_PUBLIC=1234567890
 OBA_SECRET=1234567890
 ```
 
-## Usage
-To start the app, run `npm start`.
+### Usage
+* To start the app, run `npm start`.
+* To run the app in development mode (with auto rebuilding), run `npm run dev`.
+* To test your code for linting errors, run `npm test`.
 
-To run the app in development mode (with auto rebuilding), run `npm run dev`.
+## :white_check_mark: Todo's /  :sparkles: Wishlist
+To see all upcoming todo's and features please navigate to the [issues](https://github.com/dandevri/watt-now/projects/) page of this repo.
 
-To test your code for linting errors, run `npm test`.
-
-## Wishlist
-- [ ] Add send/read indicators (like WhatsApp)
-- [ ] Add Robat user icon next to messages
-- [ ] Show dates send/received
-- [ ] Add "Last online at" in title bar
-- [ ] Support whole [OBA FAQ](https://www.oba.nl/oba/english/frequently-asked-questions.html) in conversation
-- [ ] Multilingual support
-
-## Contributing
-PRs are — as always — very welcome.
-
-### Writing commit messages
-_Based on [**Chris Beams**](https://chris.beams.io/posts/git-commit/) seven Rules of a great Git commit message._
-
-1. Separate subject from body with a blank line.
-1. Limit the subject line to 50 characters.
-1. Do not end the subject line with a period.
-1. Use the imperative mood in the subject line.
-1. Wrap the body at 72 characters.
-1. Use the body to explain what and why vs. how.
-
-**Example commit title:**
-```
-💄 Add styling for navigation bar
-```
-[Gitmoji](https://gitmoji.carloscuesta.me/) is used for commit messages
+## :page_facing_up: Contributing
+Please read [Contributing](CONTRIBUTING.md) for details on how to contribute to this project.
+To see a list of everybody who participated go to the [Contributors](https://github.com/dandevri/watt-now/graphs/contributors) page.
 
 ## Core Team
 ![Rijk van Zanten](https://avatars0.githubusercontent.com/u/9141017?v=3&s=460) | ![Giulia Meerman](https://avatars0.githubusercontent.com/u/14131081?v=3&s=460) | ![Danny de Vries](https://avatars1.githubusercontent.com/u/22084444?v=3&s=460) | ![Mirza van Meerwijk](https://avatars2.githubusercontent.com/u/12242967?v=3&s=460) | ![Pierre Bleeker](https://avatars0.githubusercontent.com/u/12711649?v=3&s=460)
