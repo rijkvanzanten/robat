@@ -201,10 +201,12 @@ function displayResults(results) {
         authors['search-term'];
     }
 
+    const title = currentValue.titles['short-title'];
+
     return {
       link: currentValue['detail-page'],
       image: currentValue.coverimages.coverimage[1] || 'https://v19.nbc.bibliotheek.nl/thumbnail?uri=http://data.bibliotheek.nl/ggc/ppn/365747343&token=c1322402',
-      title: currentValue.titles['short-title'],
+      title: title.length > 26 ? title.substring(0, 26) + '...' : title,
       author: author,
     };
   });
