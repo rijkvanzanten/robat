@@ -68,16 +68,17 @@ function search({context, entities}) {
   return OBAClient.get('search', parameters)
     .then(res => JSON.parse(res))
     .then(res => {
-      const count = res.aquabrowser.meta.count;
+      const count = Number(res.aquabrowser.meta.count);
 
-      if (count > 0) {
-        context.results = res.aquabrowser.results;
-      } else {
+      if (count === 0) {
+        delete context.results;
         context.notFound = true;
+      } else {
+        delete context.notFound;
+        context.results = res.aquabrowser.results;
       }
 
       return context;
-
     })
     .catch(err => console.log(err)); // eslint-disable-line no-console
 
