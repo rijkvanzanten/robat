@@ -167,6 +167,7 @@ article:not([data-id="-1"]) {
 
 .results img {
   align-self: center;
+  object-fit: cover;
 }
 
 form {
