@@ -203,7 +203,7 @@ function displayResults(results) {
 
     return {
       link: currentValue['detail-page'],
-      image: currentValue.coverimages.coverimage[1],
+      image: currentValue.coverimages.coverimage[1] || 'https://v19.nbc.bibliotheek.nl/thumbnail?uri=http://data.bibliotheek.nl/ggc/ppn/365747343&token=c1322402',
       title: currentValue.titles['short-title'],
       author: author,
     };
