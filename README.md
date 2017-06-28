@@ -18,6 +18,8 @@
 ## :book: Introduction
 Robat is a web-based chatbot which (from any device) can answer questions about the Amsterdam Public Library.
 
+*Please note: the whole UI is in dutch 🇳🇱*
+
 Some questions you can ask/tell Robat:  
 * Het wijzigen, aanvragen en de prijzen van een lidmaatschap.
 * Het verlengen van materiaal
