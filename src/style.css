@@ -166,6 +166,8 @@ article:not([data-id="-1"]) {
 
 .results img {
   align-self: center;
+  height: 100%;
+  width: 30%;
 }
 
 form {
