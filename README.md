@@ -68,6 +68,7 @@ To see all upcoming todo's and features please navigate to the [issues](https://
 - [x] Add send/read indicators (like WhatsApp)
 - [x] Show dates send/received
 - [x] Show online / offline indicator
+- [ ] Search for activities within the oba 
 - [ ] Support whole [OBA FAQ](https://www.oba.nl/oba/english/frequently-asked-questions.html) in conversation
 - [ ] Multilingual support
 
