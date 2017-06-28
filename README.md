@@ -9,6 +9,8 @@
 
 # Robat
 [![Build Status](https://semaphoreci.com/api/v1/rijkvanzanten/robat/branches/master/shields_badge.svg)](https://semaphoreci.com/rijkvanzanten/robat)
+![NPM](https://img.shields.io/npm/v/npm.svg)
+![Robat](https://img.shields.io/badge/🤖-robat-E30111.svg)
 
 ## Overview
 Robat is a chatbot which can help you with ~all~ ~most~ some of your questions regarding  [Amsterdam Public Library (OBA)](http://oba.nl).
