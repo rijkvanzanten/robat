@@ -134,6 +134,7 @@ article:not([data-id="-1"]) {
 }
 
 .results li {
+  max-height: 142px;
   margin-top: 0.7rem;
   flex-grow: 1;
 }
