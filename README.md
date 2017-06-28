@@ -26,6 +26,8 @@ Some questions you can ask/tell Robat:
 * Contactinformatie van een OBA locatie
 * Het kwijtraken van je pas
 
+To view a full in-depth report of this project you can view the [GitBook](https://dandevri.gitbooks.io/oba) of this project.
+
 ## ⚙️ Installation & Development
 
 ### Tech Stack
