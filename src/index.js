@@ -183,6 +183,10 @@ function showLoader() {
  * @param  {Array} results objects from the search query
  */
 function displayResults(results) {
+  if (Array.isArray(results) === false) {
+    results = [results];
+  }
+
   // Step 1: clean the api results
   const cleanResults = results.map(function(currentValue) {
 
