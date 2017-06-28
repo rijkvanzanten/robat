@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img width="200" src="media/logo.png" alt="Logo">
+	<img width="200" src="media/robat_icon-logo.png" alt="Logo">
 	<br>
 </h1>
 
