@@ -14,7 +14,7 @@ function search({context, entities}) {
   const year = firstEntityValue(entities, 'year');
   const searchQuery = firstEntityValue(entities, 'search_query');
   const parameters = {
-    ps: 5,
+    pagesize: 5,
   };
 
   if (type) {
